@@ -97,7 +97,8 @@ if tempint > 0 and tempint < 10:
 data['text'] = ' '+WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
     " "+extrachar+weather['current_condition'][0]['FeelsLikeF']+"°"
 
-data['tooltip'] = f"<b>{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_F']}°</b>\n"
+data['tooltip'] = f"{country}\n"
+data['tooltip'] += f"{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_F']}°\n"
 data['tooltip'] += f"Feels like: {weather['current_condition'][0]['FeelsLikeF']}°\n"
 data['tooltip'] += f"Wind: {weather['current_condition'][0]['windspeedKmph']}Km/h\n"
 data['tooltip'] += f"Humidity: {weather['current_condition'][0]['humidity']}%\n"

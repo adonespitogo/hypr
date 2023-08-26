@@ -5,10 +5,10 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "height": 30,
-    "modules-left": ["custom/launch_wofi","wlr/workspaces","cpu","memory","disk","hyprland/window"],
-    "modules-center": ["custom/lock_screen","custom/updates","clock","custom/power_btn"],
-    "modules-right": ["temperature","battery","backlight","pulseaudio","pulseaudio#microphone","tray","custom/weather"],
+    // "height": 40,
+    "modules-left": ["custom/launch_wofi", "wlr/workspaces", "cpu", "memory", "disk", "custom/media"],
+    "modules-center": ["custom/lock_screen", "clock", "custom/power_btn"],
+    "modules-right": ["temperature", "battery", "backlight", "pulseaudio", "pulseaudio#microphone", "tray", "custom/weather"],
 
     "hyprland/window": {
         "format": "{}"
@@ -100,7 +100,7 @@
     "clock": {
         "format": "{:%I:%M %p}",
         "tooltip": true,
-        "tooltip-format": "{: %A, %B %e %Y}"
+        "tooltip-format": "{:  %A, %B %e %Y}"
     },
 
     "backlight": {
@@ -161,5 +161,18 @@
         "critical-threshold": 70,
         "format-critical": " {temperatureC}°C",
         "on-click": "alacritty -o \"window.startup_mode=Fullscreen\" sh -c 'btop'"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "chromium": "",
+            "default": ""
+        },
+        "escape": true,
+        "exec": "python3 $HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
 }

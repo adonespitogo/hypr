@@ -57,7 +57,7 @@ tooltip label{
 #custom-lock_screen,
 #custom-power_btn,
 #custom-weather,
-#window,
+#custom-media,
 #cpu,
 #disk,
 #custom-updates,
@@ -73,8 +73,8 @@ tooltip label{
     background: #1e1e2e;
     opacity: 0.8;
     padding: 0px 10px;
-    margin: 2px 0px;
-    margin-top: 2px;
+    margin: 3px 0px;
+    margin-top: 3px;
     border: 0px;
 }
 
@@ -87,20 +87,27 @@ tooltip label{
     margin-right: 10px;
 }
 
+#battery.warning {
+    color: orange;
+}
+
+#battery.critical,
 #temperature.critical {
     color: #e92d4d;
 }
 
 #workspaces {
     padding-right: 0px;
-    padding-left: 5px;
+    padding-left: 3px;
 }
 
-#window {
+#custom-media {
     border-radius: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
+
+
 
 #custom-launch_wofi {
     color: #89b4fa;
