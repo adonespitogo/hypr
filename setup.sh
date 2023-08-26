@@ -145,7 +145,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 
     #Stage 2
     echo -e "\n$CNT - Stage 2 - Installing additional tools and utilities, this may take a while..."
-    for SOFTWR in polkit-gnome python-requests pamixer pavucontrol brightnessctl bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib lm_sensors
+    for SOFTWR in polkit-gnome python-requests pamixer pavucontrol brightnessctl bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib lm_sensors pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa
     do
         #First lets see if the package is there
         if yay -Qs $SOFTWR > /dev/null ; then
@@ -161,6 +161,8 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
             fi
         fi
     done
+
+    systemctl --user enable --now pipewire-pulse.service &>> $INSTLOG
 
     #Stage 3
     echo -e "\n$CNT - Stage 3 - Installing theme and visual related tools and utilities, this may take a while..."
@@ -217,8 +219,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     chmod +x ~/.config/hypr/scripts/bgaction
     chmod +x ~/.config/hypr/scripts/xdg-portal-hyprland
     chmod +x ~/.config/waybar/scripts/waybar-wttr.py
-    chmod +x ~/.config/waybar/scripts/baraction
-    chmod +x ~/.config/waybar/scripts/update-sys
 
     # Copy the SDDM theme
     echo -e "$CNT - Setting up the login screen."
@@ -284,13 +284,6 @@ if [[ $ROG == "Y" || $ROG == "y" ]]; then
 
     #add the keybinding file to the config
     echo -e "\nsource = ~/.config/hypr/rog-g15-strix-2021-binds.conf" >> ~/.config/hypr/hyprland.conf
-fi
-
-### Enable pipewire-pulse for audio
-read -n1 -rep $'[\e[1;33mACTION\e[0m] - Pipewire - Would you like to enable pipewire? (y,n) ' PIPEWIRE
-if [[ $PIPEWIRE == "Y" || $PIPEWIRE == "y" ]]; then
-    sudo pacman -S  pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa --noconfirm
-    systemctl --user enable --now pipewire-pulse.service
 fi
 
 ### Script is done ###
