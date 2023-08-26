@@ -36,6 +36,7 @@ ______________________________________________________________________
 Run the setup script:
 
 ```sh
+git clone https://github.com/adonespitogo/hypr.git
 cd hypr
 ./setup.sh
 ```
