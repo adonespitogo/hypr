@@ -118,70 +118,21 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "$COK - Updating yay database..."
     yay -Suy --noconfirm &>> $INSTLOG
 
-    #setup the waybar with a fix - thankyou @Mrt
-    #echo -e "$CNT - Installing Waybar with fix"
-    #yay -S --noconfirm gcc12 &>> $INSTLOG
-    #export CC=gcc-12 CXX=g++-12
-    #yay -S --noconfirm waybar-hyprland &>> $INSTLOG
+    PACKAGES="pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
+    PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout"
+    PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar google-chrome"
+    PACKAGES="$PACKAGES polkit-gnome python-requests pamixer pavucontrol brightnessctl"
+    PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib"
+    PACKAGES="$PACKAGES starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm-git"
+    PACKAGES="$PACKAGES qt5-svg qt5-quickcontrols2 qt5-graphicaleffects"
 
-    #Stage 1
-    echo -e "\n$CNT - Stage 1 - Installing main components, this may take a while..."
-    for SOFTWR in hyprland alacritty waybar swww swaylock-effects wofi wlogout mako xdg-desktop-portal-hyprland swappy grim slurp thunar google-chrome
-    do
-        #First lets see if the package is there
-        if yay -Qs $SOFTWR > /dev/null ; then
-            echo -e "$COK - $SOFTWR is already installed."
-        else
-            echo -e "$CNT - Now installing $SOFTWR ..."
-            yay -S --noconfirm $SOFTWR &>> $INSTLOG
-            if yay -Qs $SOFTWR > /dev/null ; then
-                echo -e "$COK - $SOFTWR was installed."
-            else
-                echo -e "$CER - $SOFTWR install had failed, please check the install.log"
-                exit
-            fi
-        fi
-    done
+    echo -e "\n$CNT - Installing main components, this may take a while..."
 
-    #Stage 2
-    echo -e "\n$CNT - Stage 2 - Installing additional tools and utilities, this may take a while..."
-    for SOFTWR in polkit-gnome python-requests pamixer pavucontrol brightnessctl bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib lm_sensors pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa
-    do
-        #First lets see if the package is there
-        if yay -Qs $SOFTWR > /dev/null ; then
-            echo -e "$COK - $SOFTWR is already installed."
-        else
-            echo -e "$CNT - Now installing $SOFTWR ..."
-            yay -S --noconfirm $SOFTWR &>> $INSTLOG
-            if yay -Qs $SOFTWR > /dev/null ; then
-                echo -e "$COK - $SOFTWR was installed."
-            else
-                echo -e "$CER - $SOFTWR install had failed, please check the install.log"
-                exit
-            fi
-        fi
-    done
+    echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm --needed --overrite" -S $PACKAGES
 
+    # start pipewire
+    echo -e "$CNT - Starting the Pulseaudio Service..."
     systemctl --user enable --now pipewire-pulse.service &>> $INSTLOG
-
-    #Stage 3
-    echo -e "\n$CNT - Stage 3 - Installing theme and visual related tools and utilities, this may take a while..."
-    for SOFTWR in starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm-git qt5-svg qt5-quickcontrols2 qt5-graphicaleffects
-    do
-        #First lets see if the package is there
-        if yay -Qs $SOFTWR > /dev/null ; then
-            echo -e "$COK - $SOFTWR is already installed."
-        else
-            echo -e "$CNT - Now installing $SOFTWR ..."
-            yay -S --noconfirm $SOFTWR &>> $INSTLOG
-            if yay -Qs $SOFTWR > /dev/null ; then
-                echo -e "$COK - $SOFTWR was installed."
-            else
-                echo -e "$CER - $SOFTWR install had failed, please check the install.log"
-                exit
-            fi
-        fi
-    done
 
     # Start the bluetooth service
     echo -e "$CNT - Starting the Bluetooth Service..."
