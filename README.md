@@ -41,6 +41,12 @@ cd hypr
 ./setup.sh
 ```
 
+After the setup, make sure to enable pipewire:
+
+```sh
+$ systemctl --user enable --now pipewire-pulse.service
+```
+
 ______________________________________________________________________
 
 ## Manual Setup
