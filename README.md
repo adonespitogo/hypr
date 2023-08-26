@@ -28,7 +28,7 @@ Below are the basic key bindings to get you started:
 
 You can grab the config files and install packages by hand with this commnad
 ```
-yay -S hyprland-bin kitty waybar-hyprland swww \
+yay -S hyprland-bin alacritty google-chrome waybar-hyprland swww \
 swaylock-effects wofi wlogout mako xdg-desktop-portal-hyprland-git \
 swappy grim slurp thunar polkit-gnome python-requests pamixer \
 pavucontrol brightnessctl bluez bluez-utils blueman \
