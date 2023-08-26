@@ -2,16 +2,22 @@
 
 A collection of dot config files for hyprland with a simple install script for a fresh Arch linux with yay
 
-## Automatic Installation
+## Featrues
 
-Run the setup script:
+- Dark theme
+- Minimal borders with focus on screen real-estate
+- Login and lock screen
+- Date and time + day of the week
+- Network Manager and editor
+- Volume and brightness key bindings
+- Print Screen button key binding to screenshot
+- CPU, Memory and disk usage percentage
+- Battery/Power status
+- Weather status
 
-```sh
-cd hypr
-./setup.sh
-```
+## Preview
 
------
+![alt hypr-sample](./assets/swappy.png)
 
 ## Key bindings
 
@@ -21,12 +27,25 @@ Below are the basic key bindings to get you started:
 - `SUPER + W` - open google chrome
 - `ALT + F4` - close application
 - `SUPER + R` - application launcher
+- `CTRL + ALT + DELETE` - lock the screen
 
----
+______________________________________________________________________
+
+## Automatic Installation
+
+Run the setup script:
+
+```sh
+cd hypr
+./setup.sh
+```
+
+______________________________________________________________________
 
 ## Manual Setup
 
 You can grab the config files and install packages by hand with this commnad
+
 ```
 yay -S hyprland-bin alacritty google-chrome waybar-hyprland swww \
 swaylock-effects wofi wlogout mako xdg-desktop-portal-hyprland-git \
@@ -40,7 +59,7 @@ pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa
 
 Or you can use the attached script "setup.sh" to install everything for you.
 
------
+______________________________________________________________________
 
 ### List of packages
 
@@ -82,3 +101,9 @@ Below is a list of the packages that would be installed
 - sddm-git: developement version of SDDM which is a display manager for graphical login
 - sddm-sugar-candy-git: an sddm theme my theme is based on (copy of)
 - pipewire: to enable audio
+
+______________________________________________________________________
+
+## Credits
+
+This setup is based from `SolDoesTech`'s [HyprV2](https://github.com/SolDoesTech/HyprV2) config.
