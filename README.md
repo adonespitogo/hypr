@@ -2,6 +2,30 @@
 
 A collection of dot config files for hyprland with a simple install script for a fresh Arch linux with yay
 
+## Automatic Installation
+
+Run the setup script:
+
+```sh
+cd hypr
+./setup.sh
+```
+
+-----
+
+## Key bindings
+
+Below are the basic key bindings to get you started:
+
+- `SUPER + ENTER` - open alacritty terminal
+- `SUPER + W` - open google chrome
+- `ALT + F4` - close application
+- `SUPER + R` - application launcher
+
+---
+
+## Manual Setup
+
 You can grab the config files and install packages by hand with this commnad
 ```
 yay -S hyprland-bin kitty waybar-hyprland swww \
@@ -16,10 +40,15 @@ pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa
 
 Or you can use the attached script "setup.sh" to install everything for you.
 
+-----
+
+### List of packages
+
 Below is a list of the packages that would be installed
 
 - hyprland-bin: This is the Hyprland compositor
-- kitty: This is the default terminal
+- alacritty: This is the default terminal
+- google-chrome: This is the default browser
 - waybar-hyprland: This is a fork of waybar with Hyprland workspace support
 - swww: This is used to set a desktop background image
 - swaylock-effects: This allows for the locking of the desktop its a fork that adds some editional visual effects
@@ -46,7 +75,7 @@ Below is a list of the packages that would be installed
 - btop: Resource monitor that shows usage and stats for processor, memory, disks, network and processes.
 - pacman-contrib: adds additional tools for pacman. needed for showing system updates in the waybar
 - starship: allows to customize the shell prompt
-- ttf-jetbrains-mono-nerd: Som nerd fonts for icons and overall look
+- ttf-jetbrains-mono-nerd: Some nerd fonts for icons and overall look
 - noto-fonts-emoji: fonts needed by the weather script in the top bar
 - lxappearance: used to set GTK theme
 - xfce4-settings: set of tools for xfce, needed to set GTK theme
