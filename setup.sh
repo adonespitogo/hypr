@@ -128,7 +128,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 
     echo -e "\n$CNT - Installing main components, this may take a while..."
 
-    echo y | LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm --needed --overrite" -S $PACKAGES
+    yay -S $PACKAGES --noconfirm --needed --overwrite
 
     # start pipewire
     echo -e "$CNT - Starting the Pulseaudio Service..."
