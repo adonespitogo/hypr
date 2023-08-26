@@ -238,8 +238,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     cp extras/start-hypr ~/
 
     #setup the first look and feel as dark
-    ln -sf ~/.config/waybar/style/style-dark.css ~/.config/waybar/style.css
-    ln -sf ~/.config/wofi/style/style-dark.css ~/.config/wofi/style.css
     xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
     xfconf-query -c xsettings -p /Net/IconThemeName -s "Adwaita-dark"
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
