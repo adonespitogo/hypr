@@ -1,7 +1,6 @@
-# HyprV2
-An improved Hyprland deployment
+# Hypr
 
-collection of dot config files for hyprland with a simple install script for a fresh Arch linux with yay
+A collection of dot config files for hyprland with a simple install script for a fresh Arch linux with yay
 
 You can grab the config files and install packages by hand with this commnad
 ```
@@ -15,7 +14,7 @@ lxappearance xfce4-settings sddm-git sddm-sugar-candy-git \
 pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa
 ```
 
-Or you can use the attached script "set-hypr" to install everything for you.
+Or you can use the attached script "setup.sh" to install everything for you.
 
 Below is a list of the packages that would be installed
 
