@@ -8,10 +8,10 @@ A collection of dot config files for hyprland with a simple install script for a
 - Minimal borders with focus on screen real-estate
 - Login and lock screen
 - Date and time + day of the week
-- Network Manager and editor
+- Network manager/editor
 - Volume and brightness key bindings
 - Print Screen button key binding to screenshot
-- CPU, Memory and disk usage percentage
+- CPU, memory and disk usage percentage
 - Battery/Power status
 - Weather status
 
