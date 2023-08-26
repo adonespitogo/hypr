@@ -78,8 +78,7 @@ tooltip label {
 }
 
 /* with rounded left */
-#tray,
-#custom-lock_screen,
+/* #tray, */
 #custom-launch_wofi,
 #cpu,
 #battery {
@@ -89,15 +88,19 @@ tooltip label {
 /* with roudned right */
 #custom-power_btn,
 #workspaces,
-#pulseaudio.microphone,
-#disk,
-#custom-weather {
+/* #pulseaudio.microphone, */
+#disk {
   border-radius: 0px 10px 10px 0px;
   margin-right: 10px;
 }
 
 #clock {
   border-radius: 10px;
+}
+
+#battery.plugged,
+#battery.charging {
+  color: #00a000;
 }
 
 #battery.warning {
