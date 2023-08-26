@@ -172,7 +172,7 @@
             "default": ""
         },
         "escape": true,
-        "exec": "python3 $HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "exec": "python3 $HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
+        // "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
 }
