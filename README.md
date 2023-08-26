@@ -5,13 +5,14 @@ collection of dot config files for hyprland with a simple install script for a f
 
 You can grab the config files and install packages by hand with this commnad
 ```
-yay -S hyprland-bin kitty waybar-hyprland swww \ 
+yay -S hyprland-bin kitty waybar-hyprland swww \
 swaylock-effects wofi wlogout mako xdg-desktop-portal-hyprland-git \
 swappy grim slurp thunar polkit-gnome python-requests pamixer \
 pavucontrol brightnessctl bluez bluez-utils blueman \
 network-manager-applet gvfs thunar-archive-plugin file-roller btop \
-pacman-contrib starship ttf-jetbrains-mono-nerd noto-fonts-emoji 
-lxappearance xfce4-settings sddm-git sddm-sugar-candy-git
+pacman-contrib starship ttf-jetbrains-mono-nerd noto-fonts-emoji
+lxappearance xfce4-settings sddm-git sddm-sugar-candy-git \
+pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa
 ```
 
 Or you can use the attached script "set-hypr" to install everything for you.
@@ -52,4 +53,4 @@ Below is a list of the packages that would be installed
 - xfce4-settings: set of tools for xfce, needed to set GTK theme
 - sddm-git: developement version of SDDM which is a display manager for graphical login
 - sddm-sugar-candy-git: an sddm theme my theme is based on (copy of)
-
+- pipewire: to enable audio
