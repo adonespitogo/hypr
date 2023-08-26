@@ -165,11 +165,14 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
         cp -R $DIR ~/.config/ &>> $INSTLOG
     done
 
+    # Set default wallpaper
+    echo -e "$CNT - Copying default wallpaper."
+    mkdir -p ~/Pictures/wallpapers/
+    cp ./hypr/wallpaper.jpg ~/Pictures/wallpapers/wallpaper.jpg
+
     # Set some files as exacutable
     echo -e "$CNT - Setting some file as executable."
-    chmod +x ~/.config/hypr/scripts/bgaction
-    chmod +x ~/.config/hypr/scripts/xdg-portal-hyprland
-    chmod +x ~/.config/waybar/scripts/waybar-wttr.py
+    chmod +x ~/.config/hypr/scripts/*
 
     # Copy the SDDM theme
     echo -e "$CNT - Setting up the login screen."

@@ -3,4 +3,4 @@
 #start swwww
 swww query || swww init
 
-swww img ~/.config/hypr/wallpaper.jpg
+swww img ~/Pictures/wallpapers/wallpaper.jpg
