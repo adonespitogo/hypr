@@ -286,6 +286,12 @@ if [[ $ROG == "Y" || $ROG == "y" ]]; then
     echo -e "\nsource = ~/.config/hypr/rog-g15-strix-2021-binds.conf" >> ~/.config/hypr/hyprland.conf
 fi
 
+### Enable pipewire-pulse for audio
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Pipewire - Would you like to enable pipewire? (y,n) ' PIPEWIRE
+if [[ $PIPEWIRE == "Y" || $PIPEWIRE == "y" ]]; then
+    systemctl --user enable --now pipewire-pulse.service
+fi
+
 ### Script is done ###
 echo -e "$CNT - Script had completed!"
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to start Hyprland now? (y,n) ' HYP
