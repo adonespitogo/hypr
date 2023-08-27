@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Directory containing sound files
+sound_directory="$HOME/.config/mako/sounds"
+defaultsound="/usr/share/sounds/freedesktop/stereo/message.oga"
+
+# Get the list of sound files from the directory
+files=("$sound_directory"/*)
+
+# Check if there are any files in the directory
+if [ ${#files[@]} -eq 0 ]; then
+    mpv $defaultsound
+    exit 0
+fi
+
+# Get the number of files in the array
+num_files=${#files[@]}
+
+# Generate a random index
+random_index=$((RANDOM % num_files))
+
+# Get the random file using the random index
+random_file=${files[random_index]}
+
+# Play the random file using mpv
+mpv "$random_file"
