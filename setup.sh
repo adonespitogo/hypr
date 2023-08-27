@@ -200,6 +200,12 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     ln -sf /usr/share/sddm/themes/sdt/Backgrounds/wallpaper-dark.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
 fi
 
+### Enable hiDPI for hi-res screens ###
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to enable hiDPI? (y,n) ' HIDPI
+if [[ $HIDPI == "Y" || $HIDPI == "y" ]]; then
+  sudo cp ./sddm/sddm.conf.d/hidpi.conf /etc/sddm.conf.d/
+fi
+
 ### Install the starship shell ###
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to activate the starship shell? (y,n) ' STAR
 if [[ $STAR == "Y" || $STAR == "y" ]]; then
