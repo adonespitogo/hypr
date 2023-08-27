@@ -117,7 +117,8 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "$COK - Updating yay database..."
     yay -Suy --noconfirm &>> $INSTLOG
 
-    PACKAGES="pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
+    PACKAGES="ttf-dejavu" # need to fix fonts
+    PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout"
     PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar google-chrome otf-font-awesome wl-clipboard"
     PACKAGES="$PACKAGES polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"

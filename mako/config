@@ -10,7 +10,7 @@ on-touch=dismiss
 on-notify=exec $HOME/.config/mako/scripts/random-sound
 
 # STYLE OPTIONS
-font="Fantasque Sans Mono", 10
+font=JetBrainsMono, 10
 width=500
 height=300
 margin=5
