@@ -38,8 +38,7 @@
 # noto-fonts-emoji: fonts needed by the weather script in the top bar
 # lxappearance: used to set GTK theme
 # xfce4-settings: set of tools for xfce, needed to set GTK theme
-# sddm-git: developement version of SDDM which is a display manager for graphical login
-# sddm-sugar-candy-git: an sddm theme my theme is based on (copy of)
+# sddm: developement version of SDDM which is a display manager for graphical login
 
 # set some colors
 CNT="[\e[1;36mNOTE\e[0m]"
@@ -123,7 +122,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar google-chrome otf-font-awesome wl-clipboard"
     PACKAGES="$PACKAGES polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib"
-    PACKAGES="$PACKAGES starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm-git"
+    PACKAGES="$PACKAGES starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm"
     PACKAGES="$PACKAGES qt5-svg qt5-quickcontrols2 qt5-graphicaleffects"
 
     echo -e "\n$CNT - Installing main components, this may take a while..."
@@ -165,11 +164,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
         cp -R $DIR ~/.config/ &>> $INSTLOG
     done
 
-    # Set default wallpaper
-    echo -e "$CNT - Copying default wallpaper."
-    mkdir -p ~/Pictures/wallpapers/
-    cp ./hypr/wallpaper.jpg ~/Pictures/wallpapers/wallpaper.jpg
-
     # Set some files as exacutable
     echo -e "$CNT - Setting some file as executable."
     chmod +x ~/.config/hypr/scripts/*
@@ -197,7 +191,14 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     xfconf-query -c xsettings -p /Net/IconThemeName -s "Adwaita-dark"
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
     gsettings set org.gnome.desktop.interface icon-theme "Adwaita-dark"
-    ln -sf /usr/share/sddm/themes/sdt/Backgrounds/wallpaper-dark.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
+
+    #setup sddm wallpaper
+    cp ./sdt/Backgrounds/wallpaper.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
+
+    # Set deskstop wallpaper
+    echo -e "$CNT - Copying default wallpaper."
+    mkdir -p ~/.local/share/hypr/
+    cp ./hypr/wallpaper.jpg ~/.local/share/hypr/wallpaper.jpg
 fi
 
 ### Enable hiDPI for hi-res screens ###
