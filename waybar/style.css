@@ -109,7 +109,8 @@ tooltip label {
 
 #battery.critical,
 #temperature.critical {
-  color: #e92d4d;
+  animation: error-animation 1s steps(5, start) infinite;
+  -webkit-animation: error-animation 1s steps(5, start) infinite;
 }
 
 #workspaces {
@@ -139,4 +140,10 @@ tooltip label {
   color: #cba6f7;
   border-left: 0px;
   border-right: 0px;
+}
+
+@keyframes error-animation {
+  to {
+    color: #e92d4d;
+  }
 }
