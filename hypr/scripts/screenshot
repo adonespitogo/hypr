@@ -1,0 +1,25 @@
+#!/bin/sh
+
+iDIR="$HOME/.config/hypr/mako/icons"
+
+tmp=$HOME/Pictures/Screenshots/.swappy.tmp
+time=$(date +%Y-%m-%d-%H-%M-%S)
+dir="$HOME/Pictures/Screenshots"
+file="Screenshot_${time}.png"
+
+
+rm $tmp
+mkdir -p $dir
+
+grim -g "$(slurp)" - | swappy -f -
+
+notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
+
+# ${notify_cmd_shot} "Copied to clipboard."
+##	viewnior ${dir}/"$file"
+if [[ -e "$tmp" ]]; then
+    mv $tmp $dir/$file
+    ${notify_cmd_shot} "Screenshot Saved."
+else
+    ${notify_cmd_shot} "Screenshot Deleted."
+fi
