@@ -117,8 +117,12 @@
       "󰃟",
       "󰃠"
     ],
-    "on-scroll-up": "brightnessctl set 1%+",
-    "on-scroll-down": "brightnessctl set 1%-",
+    "on-click": "",
+    "on-click-middle": "",
+    "on-click-right": "",
+    "on-update": "",
+    "on-scroll-up": "",
+    "on-scroll-down": "",
     "min-length": 6
   },
   "battery": {
