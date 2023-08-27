@@ -98,11 +98,6 @@ tooltip label {
   border-radius: 10px;
 }
 
-#battery.plugged,
-#battery.charging {
-  color: #00a000;
-}
-
 #battery.warning {
   animation: warning-animation 1s steps(5, start) infinite;
   -webkit-animation: warning-animation 1s steps(5, start) infinite;
@@ -112,6 +107,12 @@ tooltip label {
 #temperature.critical {
   animation: error-animation 1s steps(5, start) infinite;
   -webkit-animation: error-animation 1s steps(5, start) infinite;
+}
+
+#battery.plugged,
+#battery.charging {
+  color: #00a000;
+  animation: none;
 }
 
 #workspaces {
