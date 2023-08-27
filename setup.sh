@@ -153,7 +153,7 @@ fi
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
-    for DIR in alacritty hypr mako swaylock waybar wlogout wofi swappy
+    for DIR in alacritty hypr mako swappy swaylock waybar wlogout wofi
     do
         DIRPATH=~/.config/$DIR
         if [ -d "$DIRPATH" ]; then
@@ -178,14 +178,14 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Setting up the login screen."
     sudo cp -R sdt /usr/share/sddm/themes/
     sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
-    sudo mkdir /etc/sddm.conf.d
+    sudo mkdir -p /etc/sddm.conf.d
     echo -e "[Theme]\nCurrent=sdt" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
     WLDIR=/usr/share/wayland-sessions
     if [ -d "$WLDIR" ]; then
         echo -e "$COK - $WLDIR found"
     else
         echo -e "$CWR - $WLDIR NOT found, creating..."
-        sudo mkdir $WLDIR
+        sudo mkdir -p $WLDIR
     fi
     sudo cp extras/hyprland.desktop /usr/share/wayland-sessions/
     sudo sudo sed -i 's/Exec=Hyprland/Exec=\/home\/'$USER'\/start-hypr/' /usr/share/wayland-sessions/hyprland.desktop
@@ -206,6 +206,7 @@ if [[ $STAR == "Y" || $STAR == "y" ]]; then
     echo -e "$CNT - Hansen Crusher, Engage!"
     echo -e "$CNT - Updating .bashrc..."
     echo -e '\neval "$(starship init bash)"' >> ~/.bashrc
+    echo -e '\neval "$(starship init zsh)"' >> ~/.zshrc
     echo -e "$CNT - copying starship config file to ~/.confg ..."
     cp extras/starship.toml ~/.config/
 fi
