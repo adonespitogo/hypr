@@ -171,8 +171,7 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     # Copy the SDDM theme
     echo -e "$CNT - Setting up the login screen."
-    mkdir -p /usr/share/sddm/themes/aerial-sddm-theme
-    sudo cp -R ./sddm/aerial-sddm-theme/{*,.*} /usr/share/sddm/themes/aerial-sddm-theme
+    sudo cp -R ./sddm/aerial-sddm-theme /usr/share/sddm/themes
     sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial-sddm-theme
     sudo mkdir -p /etc/sddm.conf.d
     echo -e "[Theme]\nCurrent=aerial-sddm-theme" | sudo tee /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
