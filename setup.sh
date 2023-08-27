@@ -121,7 +121,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     PACKAGES="pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout"
     PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar google-chrome otf-font-awesome wl-clipboard"
-    PACKAGES="$PACKAGES polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv"
+    PACKAGES="$PACKAGES polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib"
     PACKAGES="$PACKAGES starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm-git"
     PACKAGES="$PACKAGES qt5-svg qt5-quickcontrols2 qt5-graphicaleffects"
