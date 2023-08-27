@@ -13,7 +13,7 @@ do
     if [ ! -L ~/.config/$DIR ];then
         rm -rf $dst && \
             ln -s $src $dst && \
-            echo "Linked $src -> $dst"
+            echo "Linked $dst -> $src"
     else
         echo "Already a symbolic link: ~/.config/$DIR"
     fi
