@@ -123,7 +123,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     PACKAGES="$PACKAGES polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib"
     PACKAGES="$PACKAGES starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm"
-    PACKAGES="$PACKAGES qt5-svg qt5-quickcontrols2 qt5-graphicaleffects"
+    PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia"
 
     echo -e "\n$CNT - Installing main components, this may take a while..."
 
@@ -171,10 +171,11 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     # Copy the SDDM theme
     echo -e "$CNT - Setting up the login screen."
-    sudo cp -R sdt /usr/share/sddm/themes/
-    sudo chown -R $USER:$USER /usr/share/sddm/themes/sdt
+    mkdir -p /usr/share/sddm/themes/aerial-sddm-theme
+    sudo cp -R ./sddm/aerial-sddm-theme/{*,.*} /usr/share/sddm/themes/aerial-sddm-theme
+    sudo chown -R $USER:$USER /usr/share/sddm/themes/aerial-sddm-theme
     sudo mkdir -p /etc/sddm.conf.d
-    echo -e "[Theme]\nCurrent=sdt" | sudo tee -a /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
+    echo -e "[Theme]\nCurrent=aerial-sddm-theme" | sudo tee /etc/sddm.conf.d/10-theme.conf &>> $INSTLOG
     WLDIR=/usr/share/wayland-sessions
     if [ -d "$WLDIR" ]; then
         echo -e "$COK - $WLDIR found"
@@ -191,9 +192,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     xfconf-query -c xsettings -p /Net/IconThemeName -s "Adwaita-dark"
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
     gsettings set org.gnome.desktop.interface icon-theme "Adwaita-dark"
-
-    #setup sddm wallpaper
-    cp ./sdt/Backgrounds/wallpaper.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
 
     # Set deskstop wallpaper
     echo -e "$CNT - Copying default wallpaper."

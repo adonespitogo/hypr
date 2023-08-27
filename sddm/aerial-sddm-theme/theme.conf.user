@@ -1,0 +1,14 @@
+[General]
+day_time_start=7
+day_time_start=19
+background_vid_day=playlists/day.m3u
+background_vid_night=playlists/night.m3u
+displayFont="JetBrainsMonoNL Nerd Font"
+passwordLeftMargin=15
+relativePositionX=0.5
+relativePositionY=0.75
+showLoginButton=false
+type=color
+usernameLeftMargin=15
+showTopBar=true
+autofocusInput=true

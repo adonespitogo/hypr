@@ -104,7 +104,8 @@ tooltip label {
 }
 
 #battery.warning {
-  color: orange;
+  animation: warning-animation 1s steps(5, start) infinite;
+  -webkit-animation: warning-animation 1s steps(5, start) infinite;
 }
 
 #battery.critical,
@@ -145,5 +146,10 @@ tooltip label {
 @keyframes error-animation {
   to {
     color: #e92d4d;
+  }
+}
+@keyframes warning-animation {
+  to {
+    color: orange;
   }
 }
