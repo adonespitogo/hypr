@@ -1,6 +1,6 @@
 #!/bin/bash
 
-iDIR="$HOME/.config/mako/icons"
+iDIR="$HOME/.config/hypr/mako/icons"
 
 # Get Volume
 get_volume() {
