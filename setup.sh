@@ -39,6 +39,8 @@
 # lxappearance: used to set GTK theme
 # xfce4-settings: set of tools for xfce, needed to set GTK theme
 # sddm: developement version of SDDM which is a display manager for graphical login
+# slack-desktop-wayland: slack chat application
+# spotify: music app
 
 # set some colors
 CNT="[\e[1;36mNOTE\e[0m]"
@@ -116,13 +118,13 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     # update the DB first
     echo -e "$COK - Updating yay database..."
     yay -Syu && \
-    yay -Suy --noconfirm &>> $INSTLOG
+        yay -Suy --noconfirm &>> $INSTLOG
 
     PACKAGES="ttf-dejavu" # need to fix fonts
-    PACKAGES="$PACKAGES git polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev less"
+    PACKAGES="$PACKAGES git polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev less wl-clipboard"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout"
-    PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar google-chrome otf-font-awesome wl-clipboard"
+    PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar google-chrome otf-font-awesome slack-desktop spotify"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib"
     PACKAGES="$PACKAGES starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm"
     PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia"
@@ -249,10 +251,13 @@ fi
 ### Install grub theme ###
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would like to install grub theme? (y,n) ' GRUB
 if [[ $GRUB == "Y" || $GRUB == "y" ]]; then
-  workdir=$(pwd)
+    workdir=$(pwd)
+    rm -rf grub2-themes
+
     git clone https://github.com/vinceliuice/grub2-themes.git && \
-      cd grub2-themes && ./install.sh && \
-      cd $workdir
+        cd grub2-themes && ./install.sh
+
+    cd $workdir
 fi
 
 ### Script is done ###
