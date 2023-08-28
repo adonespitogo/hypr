@@ -22,4 +22,6 @@ export XDG_SESSION_DESKTOP=Hyprland
 #env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 #env = WLR_NO_HARDWARE_CURSORS,1
 
+touch ~/.config/hypr/workspaces.conf
+
 exec Hyprland
