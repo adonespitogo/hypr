@@ -118,7 +118,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     yay -Suy --noconfirm &>> $INSTLOG
 
     PACKAGES="ttf-dejavu" # need to fix fonts
-    PACKAGES="$PACKAGES git polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
+    PACKAGES="$PACKAGES git polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev less"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout"
     PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar google-chrome otf-font-awesome wl-clipboard"
