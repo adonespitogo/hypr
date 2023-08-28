@@ -146,11 +146,13 @@ tooltip label {
 
 @keyframes error-animation {
   to {
-    color: #e92d4d;
+    color: #ffffff;
+    background-color: red;
   }
 }
 @keyframes warning-animation {
   to {
-    color: orange;
+    color: #ffffff;
+    background-color: orange;
   }
 }
