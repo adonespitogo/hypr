@@ -118,17 +118,17 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     yay -Suy --noconfirm &>> $INSTLOG
 
     PACKAGES="ttf-dejavu" # need to fix fonts
+    PACKAGES="$PACKAGES git polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout"
     PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar google-chrome otf-font-awesome wl-clipboard"
-    PACKAGES="$PACKAGES polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib"
     PACKAGES="$PACKAGES starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm"
     PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia"
 
     echo -e "\n$CNT - Installing main components, this may take a while..."
 
-    yay -S $PACKAGES --noconfirm --needed --overwrite
+    yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
 
     # start pipewire
     echo -e "$CNT - Starting the Pulseaudio Service..."
@@ -202,7 +202,7 @@ fi
 ### Enable hiDPI for hi-res screens ###
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to enable hiDPI? (y,n) ' HIDPI
 if [[ $HIDPI == "Y" || $HIDPI == "y" ]]; then
-  sudo cp ./sddm/sddm.conf.d/hidpi.conf /etc/sddm.conf.d/
+    sudo cp ./sddm/sddm.conf.d/hidpi.conf /etc/sddm.conf.d/
 fi
 
 ### Install the starship shell ###
@@ -243,6 +243,15 @@ if [[ $ROG == "Y" || $ROG == "y" ]]; then
 
     #add the keybinding file to the config
     echo -e "\nsource = ~/.config/hypr/rog-g15-strix-2021-binds.conf" >> ~/.config/hypr/hyprland.conf
+fi
+
+### Install grub theme ###
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would like to install grub theme? (y,n) ' GRUB
+if [[ $GRUB == "Y" || $GRUB == "y" ]]; then
+  workdir=$(pwd)
+    git clone https://github.com/vinceliuice/grub2-themes.git && \
+      cd grub2-themes && ./install.sh && \
+      cd $workdir
 fi
 
 ### Script is done ###
