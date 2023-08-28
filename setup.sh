@@ -115,6 +115,7 @@ read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? 
 if [[ $INST == "Y" || $INST == "y" ]]; then
     # update the DB first
     echo -e "$COK - Updating yay database..."
+    yay -Syu && \
     yay -Suy --noconfirm &>> $INSTLOG
 
     PACKAGES="ttf-dejavu" # need to fix fonts
