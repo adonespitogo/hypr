@@ -116,8 +116,6 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "$COK - Updating yay database..."
     yay -Syu --noconfirm &>> $INSTLOG
 
-    echo -e "\n$CNT - Installing main components, this may take a while..."
-
     PACKAGES="ttf-dejavu" # need to fix fonts
     PACKAGES="$PACKAGES ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome"
     PACKAGES="$PACKAGES git polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev less wl-clipboard"
@@ -134,6 +132,8 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     if [[ $INST == "Y" || $INST == "y" ]]; then
         PACKAGES="$PACKAGES $APPS"
     fi
+
+    echo -e "\n$CNT - Installing main components, this may take a while..."
 
     yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
 
