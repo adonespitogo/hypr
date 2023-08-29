@@ -119,13 +119,21 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "\n$CNT - Installing main components, this may take a while..."
 
     PACKAGES="ttf-dejavu" # need to fix fonts
+    PACKAGES="$PACKAGES ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome"
     PACKAGES="$PACKAGES git polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev less wl-clipboard"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
-    PACKAGES="$PACKAGES hyprland waybar swww swaylock-effects wofi wlogout"
-    PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar otf-font-awesome"
-    PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib"
-    PACKAGES="$PACKAGES starship ttf-jetbrains-mono-nerd noto-fonts-emoji lxappearance xfce4-settings sddm"
+    PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout"
+    PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar"
+    PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib lxappearance xfce4-settings sddm"
     PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia"
+
+    ### These are personal applications I use, feel free to remove or change ###
+    APPS="google-chrome gparted slack-desktop-wayland spotify"
+
+    read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like include these packages? '"${APPS}"' (y,n) ' INST
+    if [[ $INST == "Y" || $INST == "y" ]]; then
+        PACKAGES="$PACKAGES $APPS"
+    fi
 
     yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
 
@@ -147,16 +155,6 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "$CNT - Cleaning out conflicting xdg portals..."
     yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 fi
-
-
-# these are personal applications I use, feel free to remove or change
-for app in alacritty google-chrome gparted slack-desktop-wayland spotify; do
-    read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to install '"${app}"'? (y,n) ' INST
-    if [[ $INST == "Y" || $INST == "y" ]]; then
-      echo -e "$CNT - Installing ${app}..."
-      yay -S $app --noconfirm --needed --overwrite &>> $INSTLOG
-    fi
-done
 
 ### Copy Config Files ###
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
