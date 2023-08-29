@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+swayidle -w timeout 10 'swaylock -f' resume 'hyprctl dispatch dpms on'
