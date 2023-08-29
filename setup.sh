@@ -137,6 +137,10 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 
     yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
 
+    echo -e "$CNT - Set default applications..."
+    xdg-mime default google-chrome.desktop x-scheme-handler/https x-scheme-handler/http
+    xdg-settings set default-web-browser google-chrome.desktop
+
     # start pipewire
     echo -e "$CNT - Starting the Pulseaudio Service..."
     systemctl --user enable --now pipewire-pulse.service &>> $INSTLOG
