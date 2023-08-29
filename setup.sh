@@ -118,7 +118,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 
     PACKAGES="ttf-dejavu" # need to fix fonts
     PACKAGES="$PACKAGES ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome"
-    PACKAGES="$PACKAGES git polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev less wl-clipboard xorg-xhost"
+    PACKAGES="$PACKAGES git polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev less wl-clipboard xorg-xhost ntfs-3g"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout"
     PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar"
