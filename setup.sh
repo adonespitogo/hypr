@@ -7,7 +7,6 @@
 # Below is a list of the packages that would be installed
 #
 # hyprland: This is the Hyprland compositor
-# alacritty: This is the default terminal
 # waybar-hyprland: This is a fork of waybar with Hyprland workspace support
 # swww: This is used to set a desktop background image
 # swaylock-effects: This allows for the locking of the desktop its a fork that adds some editional visual effects
@@ -34,13 +33,11 @@
 # btop: Resource monitor that shows usage and stats for processor, memory, disks, network and processes.
 # pacman-contrib: adds additional tools for pacman. needed for showing system updates in the waybar
 # starship: allows to customize the shell prompt
-# ttf-jetbrains-mono-nerd: Som nerd fonts for icons and overall look
+# ttf-jetbrains-mono-nerd: Some nerd fonts for icons and overall look
 # noto-fonts-emoji: fonts needed by the weather script in the top bar
 # lxappearance: used to set GTK theme
 # xfce4-settings: set of tools for xfce, needed to set GTK theme
-# sddm: developement version of SDDM which is a display manager for graphical login
-# slack-desktop-wayland: slack chat application
-# spotify: music app
+# sddm: a display manager for graphical login
 
 # set some colors
 CNT="[\e[1;36mNOTE\e[0m]"
@@ -153,7 +150,7 @@ fi
 
 
 # these are personal applications I use, feel free to remove or change
-for app in alacritty google-chrome slack-desktop-wayland spotify; do
+for app in alacritty google-chrome gparted slack-desktop-wayland spotify; do
     read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to install '"${app}"'? (y,n) ' INST
     if [[ $INST == "Y" || $INST == "y" ]]; then
       echo -e "$CNT - Installing ${app}..."
