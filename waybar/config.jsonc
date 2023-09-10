@@ -8,7 +8,7 @@
   // "height": 40,
   "modules-left": [
     "custom/launch_wofi",
-    "wlr/workspaces",
+    "hyprland/workspaces",
     "cpu",
     "memory",
     "disk",
@@ -20,9 +20,7 @@
   "modules-right": [
     "battery",
     "temperature",
-    "backlight",
     "pulseaudio",
-    "pulseaudio#microphone",
     "tray",
     "custom/weather",
     "custom/lock_screen",
