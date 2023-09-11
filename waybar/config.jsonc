@@ -18,6 +18,7 @@
     "clock"
   ],
   "modules-right": [
+    "network",
     "battery",
     "temperature",
     "pulseaudio",
@@ -145,6 +146,19 @@
       "󰁹"
     ]
   },
+  "network": {
+    // "interface": "wlp1s0",
+    "interval": 2,
+    "format": "{ifname}",
+    "format-wifi": " {bandwidthDownBytes}",
+    "format-ethernet": " {ipaddr}{bandwidthDownBytes}/{bandwidthUpBytes}",
+    "format-disconnected": "", //An empty format will hide the module.
+    "tooltip-format": "  {ifname} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
+    "tooltip-format-wifi": " {essid} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "  {ifname} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": " Muted",
@@ -166,16 +180,6 @@
         ""
       ]
     }
-  },
-  "pulseaudio#microphone": {
-    "format": "{format_source}",
-    "format-source": " {volume}%",
-    "format-source-muted": " Muted",
-    "on-click": "~/.config/hypr/scripts/volume --toggle-mic",
-    "on-click-right": "pavucontrol",
-    "on-scroll-up": "~/.config/hypr/scripts/volume --mic-inc",
-    "on-scroll-down": "~/.config/hypr/scripts/volume --mic-dec",
-    "scroll-step": 5
   },
   "temperature": {
     "thermal-zone": 1,

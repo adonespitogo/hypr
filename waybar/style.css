@@ -81,7 +81,7 @@ tooltip label {
 /* #tray, */
 #custom-launch_wofi,
 #cpu,
-#battery {
+#network {
   border-radius: 10px 0px 0px 10px;
 }
 
@@ -133,7 +133,7 @@ tooltip label {
 }
 
 #pulseaudio {
-  color: #89b4fa;
+  /* color: #89b4fa; */
   border-left: 0px;
   border-right: 0px;
 }
