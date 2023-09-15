@@ -208,6 +208,9 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying default wallpaper."
     mkdir -p ~/.local/share/hypr/
     cp ./hypr/wallpaper.jpg ~/.local/share/hypr/wallpaper.jpg
+
+    # Setup screenrec screen recorder
+    sudo ln -s ~/.config/hypr/scripts/screenrec /usr/bin/screenrec
 fi
 
 ### Enable hiDPI for hi-res screens ###

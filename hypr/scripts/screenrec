@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+# Usage: Open terminal and type "screenrec"
+
+printf "Recording in "
+for n in {0..4}; do
+    printf "$((5 - $n)) "
+    sleep 1
+done
+
+mkdir -p "$HOME/Videos"
+
+filename="$HOME/Videos/record-$(date "+%s").mp4"
+wf-recorder -g "$(slurp)" --audio --file="${filename}" && \
+    echo "Saved recording to ${filename}"
