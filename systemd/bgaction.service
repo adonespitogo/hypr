@@ -1,0 +1,7 @@
+[Unit]
+Description=Execute bgaction script
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/hypr/scripts/bgaction
+

@@ -205,9 +205,11 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     gsettings set org.gnome.desktop.interface icon-theme "Adwaita-dark"
 
     # Set deskstop wallpaper
-    echo -e "$CNT - Copying default wallpaper."
-    mkdir -p ~/.local/share/hypr/
-    cp ./hypr/wallpaper.jpg ~/.local/share/hypr/wallpaper.jpg
+    echo -e "$CNT - Configuring desktop wallpapers..."
+    systemctl --user daemon-reload
+    systemctl --user enable bgaction.timer
+    systemctl --user start bgaction.timer
+    systemctl --user status bgaction.timer
 
     # Setup screenrec screen recorder
     sudo ln -s ~/.config/hypr/scripts/screenrec /usr/bin/screenrec

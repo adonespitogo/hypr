@@ -1,0 +1,10 @@
+[Unit]
+Description=Run bgaction script every 5 minutes
+
+[Timer]
+OnUnitActiveSec=5m
+Unit=bgaction.service
+
+[Install]
+WantedBy=default.target
+

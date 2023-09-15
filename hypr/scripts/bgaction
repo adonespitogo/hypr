@@ -1,31 +1,25 @@
 #!/usr/bin/bash
 
-sleep 1
-
 #start swwww
 swww query || swww init
 
-swww img ~/.config/hypr/wallpaper.jpg
-
-# Change background every 300 seconds
 wallpaper_dir="$HOME/.config/hypr/wallpapers"
 
 if [[ -d "$wallpaper_dir" ]]; then
-    sleep 300
+    # Create an array of image files in the wallpaper directory
+    images=("$wallpaper_dir"/*)
+    # Get a random index within the array size
+    random_index=$((RANDOM % ${#images[@]}))
+    # Get the randomly selected image
+    random_image="${images[random_index]}"
 
-    while true; do
-        # Create an array of image files in the wallpaper directory
-        images=("$wallpaper_dir"/*)
-        # Get a random index within the array size
-        random_index=$((RANDOM % ${#images[@]}))
-        # Get the randomly selected image
-        random_image="${images[random_index]}"
+    if [[ -f "$random_image" && ! -L "$random_image" ]]; then
+        # Set the desktop wallpaper using your existing command
+        swww img "$random_image"
+    else
+        swww img ~/.config/hypr/wallpaper.jpg
+    fi
 
-        if [[ -f "$random_image" && ! -L "$random_image" ]]; then
-            # Set the desktop wallpaper using your existing command
-            swww img "$random_image"
-            # Sleep for 300 seconds
-            sleep 300
-        fi
-    done
+else
+    swww img ~/.config/hypr/wallpaper.jpg
 fi
