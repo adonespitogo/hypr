@@ -122,7 +122,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout swayidle"
     PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar"
-    PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin file-roller btop pacman-contrib lxappearance xfce4-settings sddm thunar-volman"
+    PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin tumbler file-roller btop pacman-contrib lxappearance xfce4-settings sddm thunar-volman"
     PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia"
 
     ### These are personal applications I use, feel free to remove or change ###
