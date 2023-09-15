@@ -11,6 +11,8 @@ swww img ~/.config/hypr/wallpaper.jpg
 wallpaper_dir="$HOME/.config/hypr/wallpapers"
 
 if [[ -d "$wallpaper_dir" ]]; then
+    sleep 1800
+
     while true; do
         for image in "$wallpaper_dir"/*; do
             if [[ -f "$image" && ! -L "$image" ]]; then
