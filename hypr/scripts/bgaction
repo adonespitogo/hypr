@@ -1,6 +1,24 @@
 #!/usr/bin/bash
 
+sleep 1
+
 #start swwww
 swww query || swww init
 
-swww img ~/.local/share/hypr/wallpaper.jpg
+swww img ~/.config/hypr/wallpaper.jpg
+
+# Change background every 30 mins
+wallpaper_dir="$HOME/.config/hypr/wallpapers"
+
+if [[ -d "$wallpaper_dir" ]]; then
+    while true; do
+        for image in "$wallpaper_dir"/*; do
+            if [[ -f "$image" && ! -L "$image" ]]; then
+                # Set the desktop wallpaper using your existing command
+                swww img "$image"
+                # Sleep for 30 minutes (1800 seconds)
+                sleep 1800
+            fi
+        done
+    done
+fi
