@@ -10,13 +10,11 @@ then
 
     filename="${recordings}/${filename}_$(date "+%s").mp4"
 
-    selection_area=$(slurp)
-    if [ "${selection_area}" = "selection cancelled" ]; then exit; fi
+    selection_area="$(slurp)"
+    if [ -z $selection_area ];then exit;fi
 
     wf-recorder -g "${selection_area}" --audio --file="${filename}" >/dev/null 2>&1 &
-
     notify-send "Recording started"
-
     # Restart waybar
     pkill -RTMIN+8 waybar
 else
