@@ -2,7 +2,8 @@
 Description=Run bgaction script every 5 minutes
 
 [Timer]
-OnUnitActiveSec=5m
+AccuracySec=1
+OnCalendar=*:0/5 # every 5 minutes
 Unit=bgaction.service
 
 [Install]
