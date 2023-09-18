@@ -6,7 +6,7 @@
 #
 # Below is a list of the packages that would be installed
 #
-# hyprland: This is the Hyprland compositor
+# hyprland-git: This is the Hyprland compositor
 # waybar-hyprland: This is a fork of waybar with Hyprland workspace support
 # swww: This is used to set a desktop background image
 # swaylock-effects: This allows for the locking of the desktop its a fork that adds some editional visual effects
@@ -121,7 +121,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     PACKAGES="$PACKAGES git tk polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
     PACKAGES="$PACKAGES less wl-clipboard xorg-xhost wf-recorder zenity jq xdg-utils ntfs-3g"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
-    PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout swayidle"
+    PACKAGES="$PACKAGES hyprland-git alacritty waybar swww swaylock-effects wofi wlogout swayidle"
     PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar kdeconnect"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin tumbler"
     PACKAGES="$PACKAGES file-roller btop pacman-contrib lxappearance xfce4-settings sddm thunar-volman"
