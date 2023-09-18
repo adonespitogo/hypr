@@ -7,7 +7,7 @@ on-button-left=dismiss
 on-button-middle=none
 on-button-right=dismiss-all
 on-touch=dismiss
-on-notify=exec $HOME/.config/mako/scripts/random-sound
+on-notify=exec $HOME/.config/mako/scripts/random-sound & exec makoctl menu wofi -d -p 'Choose Action: '
 
 # STYLE OPTIONS
 font=JetBrainsMono, 10
