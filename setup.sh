@@ -145,11 +145,12 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 
     # start pipewire
     echo -e "$CNT - Starting the Pulseaudio Service..."
-    systemctl --user enable --now pipewire-pulse.service &>> $INSTLOG
+    systemctl --user enable pipewire.service &>> $INSTLOG
+    systemctl --user enable pipewire-pulse.service &>> $INSTLOG
 
     # Start the bluetooth service
     echo -e "$CNT - Starting the Bluetooth Service..."
-    sudo systemctl enable --now bluetooth.service &>> $INSTLOG
+    sudo systemctl enable bluetooth.service &>> $INSTLOG
     sleep 2
 
     # Enable the sddm login manager service
@@ -166,7 +167,7 @@ fi
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
-    for DIR in alacritty hypr mako swappy swaylock waybar wlogout wofi systemd
+    for DIR in alacritty hypr mako swappy swaylock waybar wlogout wofi
     do
         DIRPATH=~/.config/$DIR
         if [ -d "$DIRPATH" ]; then
@@ -207,6 +208,9 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     gsettings set org.gnome.desktop.interface icon-theme "Adwaita-dark"
 
     # Set deskstop wallpaper
+    # Cycle wallpapers in ~/.config/hypr/wallpapers every 5 mins
+    mkdir -p ~/.config/systemd
+    cp -r systemd/* ~/.config/systemd
     echo -e "$CNT - Configuring desktop wallpapers..."
     systemctl --user daemon-reload
     systemctl --user enable bgaction.timer
