@@ -58,6 +58,7 @@ tooltip label {
 #custom-power_btn,
 #custom-weather,
 #custom-media,
+#custom-wf-recorder,
 #cpu,
 #disk,
 #memory,
@@ -142,6 +143,10 @@ tooltip label {
   color: #cba6f7;
   border-left: 0px;
   border-right: 0px;
+}
+
+#custom-wf-recorder {
+    color: red;
 }
 
 @keyframes error-animation {

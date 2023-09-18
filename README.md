@@ -9,9 +9,11 @@ A collection of dot config files for hyprland with a simple install script for a
 - Login and lock screen
 - Date and time + day of the week
 - Network manager/editor
+- Bluetooth pairing
 - Volume and brightness key bindings
 - Print Screen button key binding to screenshot
-- CPU, memory and disk usage percentage
+- Screen recording with MOD+SHIFT+Print key binding
+- CPU, temperature, memory and disk usage percentage
 - Battery/Power status
 - Weather status
 

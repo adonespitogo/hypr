@@ -118,11 +118,13 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 
     PACKAGES="ttf-dejavu" # need to fix fonts
     PACKAGES="$PACKAGES ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome"
-    PACKAGES="$PACKAGES git tk polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev less wl-clipboard xorg-xhost xdg-utils ntfs-3g"
+    PACKAGES="$PACKAGES git tk polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
+    PACKAGES="$PACKAGES less wl-clipboard xorg-xhost wf-recorder zenity jq xdg-utils ntfs-3g"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout swayidle"
     PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar kdeconnect"
-    PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin tumbler file-roller btop pacman-contrib lxappearance xfce4-settings sddm thunar-volman"
+    PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin tumbler"
+    PACKAGES="$PACKAGES file-roller btop pacman-contrib lxappearance xfce4-settings sddm thunar-volman"
     PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia"
 
     ### These are personal applications I use, feel free to remove or change ###
@@ -210,9 +212,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     systemctl --user enable bgaction.timer
     systemctl --user start bgaction.timer
     systemctl --user status bgaction.timer
-
-    # Setup screenrec screen recorder
-    sudo ln -s ~/.config/hypr/scripts/screenrec /usr/bin/screenrec
 fi
 
 ### Enable hiDPI for hi-res screens ###
