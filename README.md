@@ -5,7 +5,6 @@ A collection of dot config files for hyprland with a simple install script for a
 ## Featrues
 
 - Dark theme
-- Minimal borders with focus on screen real-estate
 - Login and lock screen
 - Date and time + day of the week
 - Network manager/editor
@@ -16,6 +15,7 @@ A collection of dot config files for hyprland with a simple install script for a
 - CPU, temperature, memory and disk usage percentage
 - Battery/Power status
 - Weather status
+- KDE-connect integration
 
 ## Preview
 
