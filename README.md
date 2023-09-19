@@ -8,14 +8,15 @@ A collection of dot config files for hyprland with a simple install script for a
 - Login and lock screen
 - Date and time + day of the week
 - Network manager/editor
+- KDE-connect integration
 - Bluetooth pairing
-- Volume and brightness key bindings
+- Volume, mic and brightness buttons key binding
 - Print Screen button key binding to screenshot
-- Screen recording with MOD+SHIFT+Print key binding
+- Screen recording with MOD+SHIFT+PrtSc key binding
 - CPU, temperature, memory and disk usage percentage
 - Battery/Power status
 - Weather status
-- KDE-connect integration
+- Background change every 5 mins
 
 ## Preview
 
@@ -46,7 +47,7 @@ ______________________________________________________________________
 
 ## Wallpapers
 
-You can add wallpapers in `~/.config/hypr/wallpapers`. These images will be displayed randomly as wallpaper every 5 mins.
+You can add wallpapers in `~/.config/hypr/wallpapers`. These images will cycle randomly as wallpaper every 5 mins.
 
 ______________________________________________________________________
 
