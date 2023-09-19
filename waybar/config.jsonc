@@ -5,7 +5,6 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    // "height": 40,
     "modules-left": [
         "custom/launch_wofi",
         "hyprland/workspaces",
@@ -13,19 +12,20 @@
         "temperature",
         "memory",
         "disk",
-        "custom/media"
+        "network"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
-        "network",
-        "battery",
-        "pulseaudio",
-        "custom/wf-recorder",
+        "custom/media",
         "tray",
+        "custom/wf-recorder",
         "custom/weather",
-        "custom/lock_screen",
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "battery",
+        "custom/notification",
         "custom/power_btn"
     ],
     "hyprland/window": {
@@ -76,14 +76,14 @@
         "on-click": "alacritty --title btop -e sh -c 'btop'"
     },
     "custom/media": {
-        "format": "{icon} {}",
+        "format": "{icon}{}",
         "return-type": "json",
         "max-length": 40,
         "format-icons": {
-            "spotify": "",
-            "chromium": "",
-            "default": ""
+            "empty": "",
+            "default": ""
         },
+        "on-click": "playerctl play-pause",
         "escape": true,
         "exec": "python3 $HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
         // "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
@@ -101,13 +101,13 @@
         //shows the current weather and forecast
         "tooltip": true,
         "format": "{}",
-        "interval": 30,
+        "interval": 180,
         "exec": "~/.config/waybar/scripts/waybar-wttr.py",
         "return-type": "json"
     },
     "tray": {
         "icon-size": 18,
-        "spacing": 10
+        "spacing": 6
     },
     "clock": {
         "format": "{:%a %b %d %I:%M %p}",
@@ -154,15 +154,18 @@
             "󰂁",
             "󰂂",
             "󰁹"
-        ]
+        ],
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1; swaync-client -t -sw",
+        "on-click-right": "sleep 0.1; swaync-client -d -sw"
     },
     "network": {
-        // "interface": "wlp1s0",
         "interval": 2,
         "format": "{ifname}",
         "format-wifi": " {bandwidthDownBytes}",
-        "format-ethernet": " {ipaddr}{bandwidthDownBytes}/{bandwidthUpBytes}",
-        "format-disconnected": "", //An empty format will hide the module.
+        "format-ethernet": " {bandwidthDownBytes}",
+        "format-disconnected": "󰌙 0.0B/s", //An empty format will hide the module.
         "tooltip-format": "  {ifname} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
         "tooltip-format-wifi": " {essid} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
         "tooltip-format-ethernet": "  {ifname} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
@@ -170,8 +173,8 @@
         "max-length": 50
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": " Muted",
+        "format": "{icon}",
+        "format-muted": " ",
         "on-click": "~/.config/hypr/scripts/volume --toggle",
         "on-click-right": "pavucontrol",
         "on-scroll-up": "~/.config/hypr/scripts/volume --inc",
@@ -191,6 +194,16 @@
             ]
         }
     },
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": "",
+        "on-click": "~/.config/hypr/scripts/volume --toggle-mic",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "~/.config/hypr/scripts/volume --mic-inc",
+        "on-scroll-down": "~/.config/hypr/scripts/volume --mic-dec",
+        "scroll-step": 5
+    },
     "temperature": {
         "thermal-zone": 1,
         "format": " {temperatureC}°C",
@@ -205,7 +218,30 @@
     },
     "custom/power_btn": {
         "format": "",
-        "on-click": "sh -c '(sleep 0.5s; wlogout --protocol layer-shell)' & disown",
-        "tooltip": false
+        "tooltip": false,
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1; swaync-client -t -sw",
+        "on-click-right": "sleep 0.1; swaync-client -d -sw"
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1; swaync-client -t -sw",
+        "on-click-right": "sleep 0.1; swaync-client -d -sw",
+        "escape": true
     }
 }

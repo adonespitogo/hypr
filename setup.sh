@@ -1,44 +1,5 @@
 #!/bin/bash
 
-# The follwoing will attempt to install all needed packages to run Hyprland
-# This is a quick and dirty script there are no error checking
-# This script is meant to run on a clean fresh Arch install
-#
-# Below is a list of the packages that would be installed
-#
-# hyprland-git: This is the Hyprland compositor
-# waybar-hyprland: This is a fork of waybar with Hyprland workspace support
-# swww: This is used to set a desktop background image
-# swaylock-effects: This allows for the locking of the desktop its a fork that adds some editional visual effects
-# wofi: This is an application launcher menu
-# wlogout: This is a logout menu that allows for shutdown, reboot and sleep
-# mako: This is a graphical notification daemon
-# xdg-desktop-portal-hyprland-git: xdg-desktop-portal backend for hyprland
-# swappy: This is a screenshot editor tool
-# grim: This is a screenshot tool it grabs images from a Wayland compositor
-# slurp: This helps with screenshots, it selects a region in a Wayland compositor
-# thunar: This is a graphical file manager
-# polkit-gnome: needed to get superuser access on some graphical appliaction
-# python-requests: needed for the weather module script to execute
-# pamixer: This helps with audio settings such as volume
-# pavucontrol: GUI for managing audio and audio devices
-# brightnessctl: used to control monitor and keyboard bright level
-# bluez: the bluetooth service
-# bluez-utils: command line utilities to interact with bluettoth devices
-# blueman: Graphical bluetooth manager
-# network-manager-applet: Applet for managing network connection
-# gvfs: adds missing functionality to thunar such as automount usb drives
-# thunar-archive-plugin: Provides a front ent for thunar to work with compressed files
-# file-roller: Backend set of tools for working with compressed files
-# btop: Resource monitor that shows usage and stats for processor, memory, disks, network and processes.
-# pacman-contrib: adds additional tools for pacman. needed for showing system updates in the waybar
-# starship: allows to customize the shell prompt
-# ttf-jetbrains-mono-nerd: Some nerd fonts for icons and overall look
-# noto-fonts-emoji: fonts needed by the weather script in the top bar
-# lxappearance: used to set GTK theme
-# xfce4-settings: set of tools for xfce, needed to set GTK theme
-# sddm: a display manager for graphical login
-
 # set some colors
 CNT="[\e[1;36mNOTE\e[0m]"
 COK="[\e[1;32mOK\e[0m]"
@@ -103,7 +64,6 @@ if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
     echo -e "$CNT - The following file has been created $LOC."
     echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC &>> $INSTLOG
     echo -e "\n"
-    echo -e "$CNT - Restarting NetworkManager service..."
     sleep 1
     sudo systemctl restart NetworkManager &>> $INSTLOG
     sleep 3
@@ -122,7 +82,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     PACKAGES="$PACKAGES less wl-clipboard xorg-xhost wf-recorder zenity jq xdg-utils ntfs-3g"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland-git alacritty waybar swww swaylock-effects wofi wlogout swayidle"
-    PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar kdeconnect breeze-icons"
+    PACKAGES="$PACKAGES swaync-git xdg-desktop-portal-hyprland swappy grim slurp thunar kdeconnect breeze-icons"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin tumbler"
     PACKAGES="$PACKAGES file-roller btop pacman-contrib lxappearance xfce4-settings sddm thunar-volman"
     PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia"
@@ -167,7 +127,7 @@ fi
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
-    for DIR in alacritty hypr mako swappy swaylock waybar wlogout wofi
+    for DIR in alacritty hypr swappy swaylock waybar wlogout wofi swaync
     do
         DIRPATH=~/.config/$DIR
         if [ -d "$DIRPATH" ]; then
@@ -209,9 +169,9 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     # Set deskstop wallpaper
     # Cycle wallpapers in ~/.config/hypr/wallpapers every 5 mins
-    mkdir -p ~/.config/systemd
-    cp -r systemd/* ~/.config/systemd
     echo -e "$CNT - Configuring desktop wallpapers..."
+    mkdir -p ~/.config/systemd/user
+    cp -r systemd/user/. ~/.config/systemd/user
     systemctl --user daemon-reload
     systemctl --user enable bgaction.timer
     systemctl --user start bgaction.timer

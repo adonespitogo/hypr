@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory containing sound files
-sound_directory="$HOME/.config/mako/sounds"
+sound_directory="$HOME/.config/hypr/sounds/random"
 defaultsound="/usr/share/sounds/freedesktop/stereo/message.oga"
 
 # Get the list of sound files from the directory

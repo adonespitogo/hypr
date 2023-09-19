@@ -5,7 +5,7 @@ then
     recordings="$HOME/Videos/Recordings"
     mkdir -p "${recordings}"
 
-    filename=$(zenity --entry --text "Record screen file name (no extension):")
+    filename=$(zenity --entry --text "Screen record filename (no extension):")
     if [ -z "${filename}" ]; then exit; fi
 
     filename="${recordings}/${filename}_$(date "+%s").mp4"
