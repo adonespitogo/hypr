@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-iDIR="$HOME/.config/hypr/mako/icons"
+iDIR="$HOME/.config/hypr/icons"
 
 # Get brightness
 get_backlight() {
@@ -25,7 +25,7 @@ get_icon() {
 
 # Notify
 notify_user() {
-	notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$icon" "Brightness : $current%"
+	notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$icon" "Brightness" "$current%"
 }
 
 # Change brightness

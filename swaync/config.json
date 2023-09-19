@@ -2,10 +2,13 @@
     "$schema": "/etc/xdg/swaync/configSchema.json",
     "positionX": "right",
     "positionY": "top",
-    "control-center-margin-top": 0,
+    "control-center-width": 500,
+    "control-center-height": 800,
+    "control-center-margin-top": 5,
     "control-center-margin-bottom": 0,
-    "control-center-margin-right": 0,
+    "control-center-margin-right": 5,
     "control-center-margin-left": 0,
+    "notification-window-width": 500,
     "notification-icon-size": 64,
     "notification-body-image-height": 100,
     "notification-body-image-width": 200,
@@ -13,10 +16,7 @@
     "timeout-low": 5,
     "timeout-critical": 0,
     "fit-to-screen": false,
-    "control-center-width": 500,
-    "control-center-height": 900,
-    "notification-window-width": 500,
-    "keyboard-shortcuts": true,
+    "keyboard-shortcuts": false,
     "image-visibility": "when-available",
     "transition-time": 200,
     "hide-on-clear": false,
@@ -65,7 +65,7 @@
                     "command": "swaync-client -t & sh -c '(sleep 0.5s; swaylock)' & disown"
                 },
                 {
-                    "label": "󰕾",
+                    "label": "",
                     "command": "~/.config/hypr/scripts/volume --toggle"
                 },
                 {

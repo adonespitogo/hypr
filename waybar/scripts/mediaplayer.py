@@ -67,12 +67,19 @@ class PlayerManager:
         else:
             return ""
 
-    def write_output(self, text, player):
+    def write_output(self, text, artist, player):
         logger.debug(f"Writing output: {text}")
         logger.debug(f"Playername: {player.props.player_name}")
-
         play_pause_icon = self.play_pause_icon(player)
-        output = {"text": f"{play_pause_icon}  {text}", "alt": player.props.player_name, "tooltip": f"{text}"}
+
+        tooltip_prefix = ""
+        if artist:
+            tooltip_prefix = f"{artist} - "
+
+        if artist and len(text) < 15:
+            text = f"{artist} - {text}"
+
+        output = {"text": f"{play_pause_icon}  {text}", "alt": player.props.player_name, "tooltip": f"{tooltip_prefix}{text}"}
 
         sys.stdout.write(json.dumps(output) + "\n")
         sys.stdout.flush()
@@ -119,7 +126,7 @@ class PlayerManager:
         logger.debug(f"Metadata changed for player {player.props.player_name}")
         player_name = player.props.player_name
         title = player.get_title()
-        #artist = player.get_artist()
+        artist = player.get_artist()
 
         track_info = ""
         if player_name == "spotify" and "mpris:trackid" in metadata.keys() and ":ad:" in player.props.metadata["mpris:trackid"]:
@@ -134,7 +141,7 @@ class PlayerManager:
         if not track_info.strip():
             self.write_empty_output()
         elif current_playing is None or current_playing.props.player_name == player.props.player_name:
-            self.write_output(track_info, player)
+            self.write_output(track_info, artist, player)
         else:
             logger.debug(f"Other player {current_playing.props.player_name} is playing, skipping")
 

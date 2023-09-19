@@ -20,8 +20,8 @@
     "modules-right": [
         "custom/media",
         "tray",
-        "custom/wf-recorder",
         "custom/weather",
+        "custom/wf-recorder",
         "pulseaudio",
         "pulseaudio#microphone",
         "battery",
@@ -94,7 +94,7 @@
         "exec": "echo ''",
         "tooltip": "false",
         "exec-if": "pgrep 'wf-recorder'",
-        "on-click": "exec $HOME/.config/waybar/scripts/wf-record-stop.sh",
+        "on-click": "exec $HOME/.config/hypr/scripts/wf-record-stop.sh",
         "signal": 8
     },
     "custom/weather": {
@@ -170,6 +170,7 @@
         "tooltip-format-wifi": " {essid} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
         "tooltip-format-ethernet": "  {ifname} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
         "tooltip-format-disconnected": "Disconnected",
+        "on-click": "alacritty --title btop -e sh -c 'btop'",
         "max-length": 50
     },
     "pulseaudio": {

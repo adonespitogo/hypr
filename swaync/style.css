@@ -2,36 +2,21 @@
  * vim: ft=less
  */
 
-@define-color cc-bg #000;
-@define-color cc-border #cc33ff;
+@define-color cc-bg rgba(0, 0, 0, 1.0);
 
 @define-color noti-border-color rgba(255, 255, 255, 0.15);
-@define-color noti-bg rgb(48, 48, 48);
+@define-color noti-bg rgb(30, 30, 46);
 @define-color noti-bg-darker rgb(38, 38, 38);
-@define-color noti-bg-hover rgb(56, 56, 56);
+@define-color noti-bg-hover rgb(204, 51, 255);
 @define-color noti-bg-focus rgba(68, 68, 68, 0.6);
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
-@define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
+@define-color noti-close-bg-hover rgb(204, 51, 255);
 
 @define-color text-color rgb(255, 255, 255);
 @define-color text-color-disabled rgb(150, 150, 150);
 
 @define-color bg-selected rgb(0, 128, 255);
-
-.control-center {
-  background: @cc-bg;
-  border: 5px solid @cc-border;
-  border-radius: 12px;
-}
-
-.control-center-list {
-  background: transparent;
-}
-
-.control-center-list-placeholder {
-  opacity: 0.5;
-}
-
+@define-color accent-color rgb(204, 51, 255);
 
 .notification-row {
   outline: none;
@@ -39,12 +24,12 @@
 
 .notification-row:focus,
 .notification-row:hover {
-  background: @noti-bg-focus;
+  background: none;
 }
 
 .notification {
-  border-radius: 12px;
-  margin: 6px 12px;
+  border-radius: 8px;
+  margin: 5px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
     0 2px 6px 2px rgba(0, 0, 0, 0.3);
   padding: 0;
@@ -54,26 +39,26 @@
 .low {
   background: yellow;
   padding: 6px;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .normal {
   background: green;
   padding: 6px;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .critical {
   background: red;
   padding: 6px;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 */
 
 .notification-content {
   background: transparent;
   padding: 6px;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .close-button {
@@ -97,6 +82,10 @@
   border: none;
 }
 
+.notification:hover > .close-button {
+    background: @noti-close-bg;
+}
+
 .notification-default-action,
 .notification-action {
   padding: 4px;
@@ -115,7 +104,7 @@
 }
 
 .notification-default-action {
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 /* When alternative actions are visible */
@@ -148,13 +137,13 @@
   color: @text-color;
   caret-color: @text-color;
   border: 1px solid @noti-border-color;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 .inline-reply-button {
   margin-left: 4px;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
-  border-radius: 12px;
+  border-radius: 8px;
   color: @text-color;
 }
 .inline-reply-button:disabled {
@@ -167,12 +156,13 @@
 }
 
 .image {
+    border-radius: 8px;
 }
 
 .body-image {
   margin-top: 6px;
   background-color: white;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .summary {
@@ -200,6 +190,19 @@
   text-shadow: none;
 }
 
+.control-center {
+  background: @cc-bg;
+  border-radius: 10px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.control-center-list-placeholder {
+  opacity: 0.5;
+}
+
 .floating-notifications {
   background: transparent;
 }
@@ -223,7 +226,7 @@
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 .widget-title > button:hover {
   background: @noti-bg-hover;
@@ -236,17 +239,18 @@
 }
 .widget-dnd > switch {
   font-size: initial;
-  border-radius: 12px;
+  border-radius: 8px;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
 }
 .widget-dnd > switch:checked {
   background: @bg-selected;
+  border: 1px solid @cc-bg;
 }
 .widget-dnd > switch slider {
   background: @noti-bg-hover;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 /* Label widget */
@@ -260,6 +264,9 @@
 /* Mpris widget */
 .widget-mpris {
   /* The parent to all players */
+  background: @noti-bg;
+  margin: 8px;
+  border-radius: 8px;
 }
 .widget-mpris-player {
   padding: 8px;
@@ -277,13 +284,14 @@
 .widget-buttons-grid {
   padding: 8px;
   margin: 8px;
-  border-radius: 12px;
-  background-color: @noti-bg;
+  padding-left: 18px;
+  border-radius: 8px;
+  background-color: @cc-bg;
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button{
   background: @noti-bg;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {
@@ -300,7 +308,7 @@
   background-color: @noti-bg;
   padding: 8px;
   margin: 8px;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .AnyName>button {
@@ -323,7 +331,7 @@
   background-color: @noti-bg;
   padding: 8px;
   margin: 8px;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .widget-volume>box>button {
@@ -335,7 +343,7 @@
   background-color: @noti-bg-alt;
   padding: 4px 8px 8px 8px;
   margin: 0px 8px 8px 8px;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 /* Backlight widget */
@@ -343,7 +351,7 @@
   background-color: @noti-bg;
   padding: 8px;
   margin: 8px;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 /* Title widget */
@@ -358,7 +366,7 @@
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 .widget-inhibitors > button:hover {
   background: @noti-bg-hover;
