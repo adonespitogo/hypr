@@ -47,7 +47,7 @@ ______________________________________________________________________
 
 ## Wallpapers
 
-You can add wallpapers in `~/.config/hypr/wallpapers`. These images will cycle randomly as wallpaper every 5 mins.
+You can add wallpapers in `~/.config/wallpapers`. These images will cycle randomly as wallpaper every 5 mins.
 
 ______________________________________________________________________
 

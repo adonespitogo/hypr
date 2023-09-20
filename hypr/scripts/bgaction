@@ -6,7 +6,7 @@ swww query || swww init
 swww img ~/.config/hypr/wallpaper.jpg
 
 # Change background every 300 seconds
-wallpaper_dir="$HOME/.config/hypr/wallpapers"
+wallpaper_dir="$HOME/.config/wallpapers"
 
 # Create an array of image files in the wallpaper directory
 images=("$wallpaper_dir"/*)
