@@ -20,7 +20,7 @@ A collection of dot config files for hyprland with a simple install script for a
 
 ## Preview
 
-![alt hypr-sample](./assets/preview.png)
+![alt hypr-sample](./assets/preview.gif)
 
 ## Key bindings
 
