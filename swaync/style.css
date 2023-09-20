@@ -7,15 +7,15 @@
 @define-color noti-border-color rgba(150, 0, 200, 0.15);
 @define-color noti-bg rgb(30, 30, 46);
 @define-color noti-bg-darker rgb(18, 18, 28);
-@define-color noti-bg-hover rgb(150, 0, 200);
-@define-color noti-bg-focus rgba(150, 0, 200, 0.6);
+@define-color noti-bg-hover rgb(100, 0, 150);
+@define-color noti-bg-focus rgb(100, 0, 150);
 @define-color noti-close-bg rgba(255, 255, 255, 0.1);
 @define-color noti-close-bg-hover rgb(204, 51, 255);
 
 @define-color text-color rgb(255, 255, 255);
 @define-color text-color-disabled rgb(150, 150, 150);
 
-@define-color bg-selected rgb(150, 0, 200);
+@define-color bg-selected rgb(100, 0, 150);
 
 .notification-row {
   outline: none;
