@@ -20,7 +20,7 @@ A collection of dot config files for hyprland with a simple install script for a
 
 ## Preview
 
-![alt hypr-sample](./assets/swappy.png)
+![alt hypr-sample](./assets/preview.png)
 
 ## Key bindings
 
@@ -49,6 +49,7 @@ ______________________________________________________________________
 
 You can add wallpapers in `~/.config/wallpapers`. These images will cycle randomly as wallpaper every 5 mins.
 
+You can change the background randomly with `MOD+SHIFT+b`.
 ______________________________________________________________________
 
 ## Credits
