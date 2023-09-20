@@ -1,6 +1,6 @@
 #!/bin/sh
 
-icon_path="$HOME/.config/hypr/icons/picture.png"
+icon_path="$HOME/.config/hypr/icons/video.png"
 
 if [ ! -z $(pgrep wf-recorder) ];
 then
