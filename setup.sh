@@ -21,8 +21,6 @@ Please note that support for Nvidia GPUs is limited and may require
 more work which is beyond the scope of this script.
 \n"
 
-sleep 3
-
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to continue with the install (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "$COK - Starting install script.."
@@ -35,8 +33,6 @@ fi
 echo -e "\n
 $CNT - This script will run some commands that require sudo. You will be prompted to enter your password.
 If you are worried about entering your password then you may want to review the content of the script."
-
-sleep 3
 
 #### Check for yay ####
 ISYAY=/sbin/yay
@@ -99,26 +95,6 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
 
 
-    ### These are personal applications I use, feel free to remove or change ###
-    PACKAGES="docker docker-compose docker-buildx virtualbox virtualbox-host-dkms linux-headers virtualbox-guest-iso virtualbox-ext-oracle tlp"
-
-    read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like install these packages? '"${PACKAGES}"' (y,n) ' INST
-    if [[ $INST == "Y" || $INST == "y" ]]; then
-        echo -e "\n$CNT - Installing additional packages, this may take a while..."
-        yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
-        sudo usermod -aG docker,vboxusers,storage,disk,input $USER
-        sudo systemctl enable docker.service
-        sudo systemctl enable systemd-modules-load.service
-
-        # enable tlp
-        sudo systemctl enable tlp.service
-        sudo systemctl mask systemd-rfkill.service
-        sudo systemctl mask systemd-rfkill.socket
-        echo "TLP_DEFAULT_MODE=BAT" >> /etc/tlp.conf
-        echo "STOP_CHARGE_THRESH_BAT0=80" >> /etc/tlp.conf
-        echo "RESTORE_THRESHOLDS_ON_BAT=1" >> /etc/tlp.conf
-    fi
-
     echo -e "$CNT - Set default applications..."
     xdg-mime default google-chrome.desktop x-scheme-handler/https x-scheme-handler/http
     xdg-settings set default-web-browser google-chrome.desktop
@@ -141,6 +117,33 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     # Clean out other portals
     echo -e "$CNT - Cleaning out conflicting xdg portals..."
     yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
+fi
+
+
+### These are personal applications I use, feel free to remove or change ###
+PACKAGES="docker docker-compose docker-buildx virtualbox virtualbox-host-dkms linux-headers virtualbox-guest-iso virtualbox-ext-oracle tlp"
+
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like install these packages? '"${PACKAGES}"' (y,n) ' INST
+if [[ $INST == "Y" || $INST == "y" ]]; then
+    echo -e "\n$CNT - Installing additional packages, this may take a while..."
+    yay -Syu --noconfirm &>> $INSTLOG
+    yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
+
+    echo -e "\n$CNT - Adding user to groups..."
+    sudo usermod -aG docker,vboxusers,storage,disk,input $USER
+
+    echo -e "\n$CNT - Enabling docker and vbox services..."
+    sudo systemctl enable docker.service
+    # sudo systemctl enable systemd-modules-load.service
+
+    # enable tlp
+    echo -e "\n$CNT - Configuring tlp service..."
+    sudo systemctl enable tlp.service
+    sudo systemctl mask systemd-rfkill.service
+    sudo systemctl mask systemd-rfkill.socket
+    echo -e "TLP_DEFAULT_MODE=BAT" | sudo tee -a /etc/tlp.conf
+    echo -e "STOP_CHARGE_THRESH_BAT0=80" | sudo tee -a /etc/tlp.conf
+    echo -e "RESTORE_THRESHOLDS_ON_BAT=1" | sudo tee -a /etc/tlp.conf
 fi
 
 ### Copy Config Files ###
@@ -254,8 +257,10 @@ if [[ $GRUB == "Y" || $GRUB == "y" ]]; then
     mkdir -p $extract_dir
 
     echo -e "$CNT - Installing grub theme..."
-    tar xvf ./extras/Grub2-theme_CyberRe-1.0.0.tar.gz --directory "${extract_dir}" &>> $INSTLOG
-    cd "${extract_dir}/CyberRe 1.0.0" && ./install.sh
+    tar xvf ./extras/Grub2-theme_CyberRe-1.0.0.tar.gz --directory "${extract_dir}" &>> $INSTLOG && \
+        cd "${extract_dir}/CyberRe 1.0.0" && ./install.sh && \
+        echo -e "GRUB_GFXMODE=1920x1080x32" | sudo tee -a /etc/default/grub &>> $INSTLOG && \
+        sudo grub-mkconfig -o /boot/grub/grub.cfg &>> $INSTLOG
 
     cd $workdir
 fi
