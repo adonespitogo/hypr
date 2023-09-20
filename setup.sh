@@ -95,9 +95,22 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
         PACKAGES="$PACKAGES $APPS"
     fi
 
-    echo -e "\n$CNT - Installing main components, this may take a while..."
-
+    echo -e "\n$CNT - Installing main packages, this may take a while..."
     yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
+
+
+    ### These are personal applications I use, feel free to remove or change ###
+    PACKAGES="docker docker-compose docker-buildx virtualbox virtualbox-host-dkms linux-headers virtualbox-guest-iso virtualbox-ext-oracle"
+
+    read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like install these packages? '"${PACKAGES}"' (y,n) ' INST
+    if [[ $INST == "Y" || $INST == "y" ]]; then
+        echo -e "\n$CNT - Installing additional packages, this may take a while..."
+        yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
+        sudo usermod -aG docker $USER
+        sudo usermod -aG vboxusers $USER
+        sudo systemctl enable docker.service
+        sudo systemctl enable systemd-modules-load.service
+    fi
 
     echo -e "$CNT - Set default applications..."
     xdg-mime default google-chrome.desktop x-scheme-handler/https x-scheme-handler/http
@@ -233,8 +246,9 @@ if [[ $GRUB == "Y" || $GRUB == "y" ]]; then
     rm -rf $extract_dir
     mkdir -p $extract_dir
 
-    tar xvf ./extras/Grub2-theme_CyberRe-1.0.0.tar.gz --directory "${extract_dir}" && \
-        cd "${extract_dir}/CyberRe 1.0.0" && ./install.sh &>> $INSTLOG
+    echo -e "$CNT - Installing grub theme..."
+    tar xvf ./extras/Grub2-theme_CyberRe-1.0.0.tar.gz --directory "${extract_dir}" &>> $INSTLOG
+    cd "${extract_dir}/CyberRe 1.0.0" && ./install.sh
 
     cd $workdir
 fi
