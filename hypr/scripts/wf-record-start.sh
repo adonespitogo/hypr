@@ -18,8 +18,8 @@ then
     echo "$filename" > "${tmp_file}"
 
     wf-recorder -g "${selection_area}" --audio --file="${filename}" & disown && \
-        notify-send -u low -i "${icon_path}" "Screen Record" "Recording has started" && \
+        notify-send -u low -i "${icon_path}" "Screen Record" "Recording has started." && \
         pkill -RTMIN+8 waybar
 else
-    notify-send -u low -i $icon_path "Screen Record" "Recording already in progress"
+    notify-send -u low -i $icon_path "Screen Record" "Recording is already in progress."
 fi

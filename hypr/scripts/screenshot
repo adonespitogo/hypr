@@ -27,5 +27,5 @@ if [[ -e "$tmp" ]]; then
         thunar "${filename}"
     fi
 else
-    ${notify_cmd_shot} "Screenshot" "Screenshot has been deleted."
+    ${notify_cmd_shot} "Screenshot" "Cancelled screenshot."
 fi
