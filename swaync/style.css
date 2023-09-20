@@ -192,6 +192,7 @@
 .control-center {
   background: @cc-bg;
   border-radius: 10px;
+  border: 1px solid @noti-border-color;
 }
 
 .control-center-list {
@@ -264,6 +265,7 @@
 .widget-mpris {
   /* The parent to all players */
   background: @noti-bg;
+  border: 1px solid @noti-border-color;
   margin: 8px;
   border-radius: 8px;
 }
@@ -277,6 +279,13 @@
 }
 .widget-mpris-subtitle {
   font-size: 1.1rem;
+}
+.widget-mpris button {
+  background: @noti-bg;
+  border: @noti-border-color;
+}
+.widget-mpris button:hover {
+  background: @noti-bg-hover;
 }
 
 /* Buttons widget */
@@ -293,6 +302,7 @@
   padding: 8px 28px;
   background: @noti-bg;
   border-radius: 8px;
+  border: 1px solid @noti-border-color;
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {
@@ -330,6 +340,7 @@
 
 .widget-volume {
   background-color: @noti-bg;
+  border: 1px solid @noti-border-color;
   padding: 8px;
   margin: 8px;
   border-radius: 8px;
