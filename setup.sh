@@ -228,10 +228,13 @@ fi
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would like to install grub theme? (y,n) ' GRUB
 if [[ $GRUB == "Y" || $GRUB == "y" ]]; then
     workdir=$(pwd)
-    rm -rf grub2-themes
+    extract_dir="/tmp/grub2-cybre"
 
-    git clone https://github.com/vinceliuice/grub2-themes.git && \
-        cd grub2-themes && ./install.sh
+    rm -rf $extract_dir
+    mkdir -p $extract_dir
+
+    tar xvf ./extras/Grub2-theme_CyberRe-1.0.0.tar.gz --directory "${extract_dir}" && \
+        cd "${extract_dir}/CyberRe\ 1.0.0" && ./install.sh &>> $INSTLOG
 
     cd $workdir
 fi

@@ -6,6 +6,7 @@ tmp=$HOME/Pictures/Screenshots/.swappy.tmp
 time=$(date +%Y%m%d%H%M%S)
 dir="$HOME/Pictures/Screenshots"
 file="Screenshot_${time}.png"
+filename="${dir}/${file}"
 
 rm $tmp
 mkdir -p $dir
@@ -17,8 +18,14 @@ notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-noti
 # ${notify_cmd_shot} "Copied to clipboard."
 ##	viewnior ${dir}/"$file"
 if [[ -e "$tmp" ]]; then
-    mv $tmp $dir/$file
-    ${notify_cmd_shot} "Screenshot" "Saved to ~/Pictures/Screenshots/${file}"
+    mv $tmp $filename
+    action=$(${notify_cmd_shot} "Screenshot" "Saved to ~/Pictures/Screenshots/${file}" --action "Locate")
+    echo "action: $action"
+    echo "filename: $filename"
+
+    if [[ "${action}" == "0" ]]; then
+        thunar "${filename}"
+    fi
 else
     ${notify_cmd_shot} "Screenshot" "Screenshot has been deleted."
 fi

@@ -66,11 +66,11 @@
                 },
                 {
                     "label": "",
-                    "command": "~/.config/hypr/scripts/volume --toggle"
+                    "command": "swaync-client -t & pavucontrol -t 3"
                 },
                 {
                     "label": "󰍬",
-                    "command": "~/.config/hypr/scripts/volume --toggle-mic"
+                    "command": "swaync-client -t & pavucontrol -t 4"
                 },
                 {
                     "label": "󰂯",

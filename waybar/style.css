@@ -84,8 +84,8 @@ tooltip label {
 /* #tray, */
 #battery,
 #custom-launch_wofi,
-#tray,
 #clock,
+#pulseaudio,
 #cpu {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -95,21 +95,12 @@ tooltip label {
 /* #pulseaudio.microphone, */
 #custom-power_btn,
 #workspaces,
+#tray,
 #clock,
-#pulseaudio.microphone,
 #network {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   margin-right: 10px;
-}
-
-#custom-weather {
-  padding-left: 0;
-  margin-left: 0;
-}
-
-#custom-weather.unavailable {
-    color: red;
 }
 
 #battery.warning {
@@ -148,6 +139,22 @@ tooltip label {
 
 #custom-wf-recorder {
   color: red;
+}
+
+#custom-weather {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#custom-weather.unavailable {
+    color: red;
+}
+
+#tray {
+    padding-left: 0;
+    margin-left: 0;
 }
 
 @keyframes error-animation {

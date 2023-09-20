@@ -10,8 +10,12 @@ then
 
     if [ -f "/tmp/.recording" ]; then
         filename="$(cat /tmp/.recording)"
-        notify-send -u low -i "${icon_path}" "Screen Record" "Saved to ${filename}"
+        action=$(notify-send -u low -i "${icon_path}" "Screen Record" "Saved to ${filename}" --action "Locate")
+
+        if [[ "${action}" == "0" ]]; then
+            thunar "${filename}"
+        fi
     fi
 else
-    notify-send "Not recording"
+    notify-send -u low "Screen Record" "Not recording!"
 fi
