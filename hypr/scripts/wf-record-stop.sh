@@ -12,14 +12,10 @@ then
     pkill -RTMIN+8 waybar
 
     if [ -f "${tmp_file}" ]; then
-        filename=$(zenity --entry --text "Screen record filename (no extension):")
-        if [ -z "${filename}" ]; then
-            filename="Record_$(date "+%s")"
-        fi
-
+        tmp_file="$(cat $tmp_file)"
+        filename="Record_$(date "+%s")"
         filename="${recordings}/${filename}.mp4"
 
-        tmp_file="$(cat $tmp_file)"
         mv "${tmp_file}" "${filename}"
 
         action=$(notify-send -u low -i "${icon_path}" "Screen Record" "Saved to ${filename}" --action "Locate")
