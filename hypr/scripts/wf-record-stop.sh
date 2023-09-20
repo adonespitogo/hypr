@@ -1,6 +1,9 @@
 #!/bin/sh
 
 icon_path="$HOME/.config/hypr/icons/video.png"
+recordings="$HOME/Videos/Recordings"
+tmp_dir="${recordings}/.tmp"
+tmp_file="${tmp_dir}/.recording"
 
 if [ ! -z $(pgrep wf-recorder) ];
 then
@@ -8,8 +11,17 @@ then
     while [ ! -z $(pgrep -x wf-recorder) ]; do wait; done
     pkill -RTMIN+8 waybar
 
-    if [ -f "/tmp/.recording" ]; then
-        filename="$(cat /tmp/.recording)"
+    if [ -f "${tmp_file}" ]; then
+        filename=$(zenity --entry --text "Screen record filename (no extension):")
+        if [ -z "${filename}" ]; then
+            filename="Record_$(date "+%s")"
+        fi
+
+        filename="${recordings}/${filename}.mp4"
+
+        tmp_file="$(cat $tmp_file)"
+        mv "${tmp_file}" "${filename}"
+
         action=$(notify-send -u low -i "${icon_path}" "Screen Record" "Saved to ${filename}" --action "Locate")
 
         if [[ "${action}" == "0" ]]; then
@@ -17,5 +29,5 @@ then
         fi
     fi
 else
-    notify-send -u low "Screen Record" "Not recording!"
+    notify-send -i $icon_path -u low "Screen Record" "Not recording!"
 fi
