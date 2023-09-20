@@ -152,11 +152,6 @@ tooltip label {
     color: red;
 }
 
-#tray {
-    padding-left: 0;
-    margin-left: 0;
-}
-
 @keyframes error-animation {
   to {
     color: #ffffff;
