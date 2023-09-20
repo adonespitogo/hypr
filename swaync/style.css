@@ -192,9 +192,7 @@
 .control-center {
   background: @cc-bg;
   border-radius: 10px;
-  /*box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
-    0 2px 6px 2px rgba(0, 0, 0, 0.3);*/
-  border: 1px solid @noti-border-color;
+  border: none;
 }
 
 .control-center-list {
@@ -226,7 +224,7 @@
   color: @text-color;
   text-shadow: none;
   background: @noti-bg;
-  border: 1px solid @noti-border-color;
+  border: none;
   box-shadow: none;
   border-radius: 8px;
 }
@@ -243,7 +241,7 @@
   font-size: initial;
   border-radius: 8px;
   background: #000;
-  border: 1px solid @noti-border-color;
+  border: 1px solid @noti-bg;
   box-shadow: none;
 }
 .widget-dnd > switch:checked {
@@ -267,7 +265,7 @@
 .widget-mpris {
   /* The parent to all players */
   background: @noti-bg;
-  border: 1px solid @noti-border-color;
+  border: none;
   margin: 8px;
   border-radius: 8px;
 }
@@ -304,7 +302,7 @@
   padding: 8px 28px;
   background: @noti-bg;
   border-radius: 8px;
-  border: 1px solid @noti-border-color;
+  border: none;
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button:hover {
@@ -342,7 +340,7 @@
 
 .widget-volume {
   background-color: @noti-bg;
-  border: 1px solid @noti-border-color;
+  border: none;
   padding: 8px;
   margin: 8px;
   border-radius: 8px;
