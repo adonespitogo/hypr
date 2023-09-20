@@ -1,6 +1,6 @@
 #!/bin/bash
 
-iDIR="/usr/share/icons/breeze-dark/status/symbolic"
+iDIR="${HOME}/.config/hypr/icons"
 
 # Get Volume
 get_volume() {
@@ -11,34 +11,35 @@ get_volume() {
 # Get volume icons
 get_vol_icon() {
     is_mute=$1
-    if [ "${is_mute}" == "true" ]; then echo "$iDIR/audio-volume-muted-symbolic.svg"; exit; fi
+    if [ "${is_mute}" == "true" ]; then echo "$iDIR/volume-muted.png"; exit; fi
 
     current=$(get_volume)
     if [[ "$current" -eq "0" ]]; then
-        echo "$iDIR/audio-volume-muted-symbolic.svg"
+        echo "$iDIR/volume-muted.png"
     elif [[ ("$current" -ge "0") && ("$current" -le "30") ]]; then
-        echo "$iDIR/audio-volume-low-symbolic.svg"
+        echo "$iDIR/volume-low.png"
     elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
-        echo "$iDIR/audio-volume-medium-symbolic.svg"
+        echo "$iDIR/volume-medium.png"
     elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
-        echo "$iDIR/audio-volume-high-symbolic.svg"
+        echo "$iDIR/volume-high.png"
     fi
 }
 
 # Get mic icons
 get_mic_icon() {
     is_mute=$1
-    if [ "${is_mute}" == "true" ]; then echo "$iDIR/microphone-sensitivity-muted-symbolic.svg"; exit; fi
+    if [ "${is_mute}" == "true" ]; then echo "$iDIR/microphone-muted.png"; exit; fi
 
     current=$(pamixer --default-source --get-volume)
     if [[ "$current" -eq "0" ]]; then
-        echo "$iDIR/microphone-sensitivity-muted-symbolic.svg"
-    elif [[ ("$current" -ge "0") && ("$current" -le "30") ]]; then
-        echo "$iDIR/microphone-sensitivity-low-symbolic.svg"
-    elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
-        echo "$iDIR/microphone-sensitivity-medium-symbolic.svg"
-    elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
-        echo "$iDIR/microphone-sensitivity-high-symbolic.svg"
+        echo "$iDIR/microphone-muted.png"
+        # elif [[ ("$current" -ge "0") && ("$current" -le "30") ]]; then
+        #     echo "$iDIR/microphone.png"
+        # elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
+        #     echo "$iDIR/microphone.png"
+        # elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
+    else
+        echo "$iDIR/microphone.png"
     fi
 }
 
