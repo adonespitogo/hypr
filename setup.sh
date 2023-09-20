@@ -100,16 +100,23 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 
 
     ### These are personal applications I use, feel free to remove or change ###
-    PACKAGES="docker docker-compose docker-buildx virtualbox virtualbox-host-dkms linux-headers virtualbox-guest-iso virtualbox-ext-oracle"
+    PACKAGES="docker docker-compose docker-buildx virtualbox virtualbox-host-dkms linux-headers virtualbox-guest-iso virtualbox-ext-oracle tlp"
 
     read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like install these packages? '"${PACKAGES}"' (y,n) ' INST
     if [[ $INST == "Y" || $INST == "y" ]]; then
         echo -e "\n$CNT - Installing additional packages, this may take a while..."
         yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
-        sudo usermod -aG docker $USER
-        sudo usermod -aG vboxusers $USER
+        sudo usermod -aG docker,vboxusers,storage,disk,input $USER
         sudo systemctl enable docker.service
         sudo systemctl enable systemd-modules-load.service
+
+        # enable tlp
+        sudo systemctl enable tlp.service
+        sudo systemctl mask systemd-rfkill.service
+        sudo systemctl mask systemd-rfkill.socket
+        echo "TLP_DEFAULT_MODE=BAT" >> /etc/tlp.conf
+        echo "STOP_CHARGE_THRESH_BAT0=80" >> /etc/tlp.conf
+        echo "RESTORE_THRESHOLDS_ON_BAT=1" >> /etc/tlp.conf
     fi
 
     echo -e "$CNT - Set default applications..."
