@@ -9,35 +9,41 @@ shutter_sound="$HOME/.config/hypr/sounds/camera-shutter.mp3"
 file="Screenshot_${time}.png"
 filename="${dir}/${file}"
 capture_area=$1
+grim_output="/tmp/grim_$(date "+%s").png"
 
 notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
 
 # Clean up tmp file
-rm $tmp
+rm -f $tmp
 mkdir -p $dir
 
 if [ -z "$capture_area" ]; then
     mpv $shutter_sound
     ${notify_cmd_shot} -t 1500 "Processing" "Processing screenshot."
 
-    grim - | swappy -f -
+    grim $grim_output
+    swappy -f $grim_output
 else
     selection_area=$(slurp)
     if [ ! -z "${selection_area}" ]; then
         mpv $shutter_sound
         ${notify_cmd_shot} -t 1500 "Processing" "Processing screenshot."
 
-        grim -g "${selection_area}" - | swappy -f -
+        grim -g "${selection_area}" $grim_output
+        swappy -f $grim_output
+    else
+        exit 0
     fi
 fi
 
-if [[ -e "$tmp" ]]; then
-    mv $tmp $filename
-    action=$(${notify_cmd_shot} "Screenshot" "Saved to ~/Pictures/Screenshots/${file}" --action "Locate")
 
-    if [[ "${action}" == "0" ]]; then
-        thunar "${filename}"
-    fi
-else
-    ${notify_cmd_shot} "Screenshot" "Cancelled operation."
+if [ ! -e "$tmp" ]; then
+    tmp=$grim_output
+fi
+
+mv $tmp $filename
+action=$(${notify_cmd_shot} "Screenshot" "Saved to ~/Pictures/Screenshots/${file}" --action "Locate")
+
+if [[ "${action}" == "0" ]]; then
+    thunar "${filename}"
 fi
