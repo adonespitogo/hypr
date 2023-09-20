@@ -49,7 +49,7 @@ window {
 }
 
 #img:selected {
-    background-color: #5500cc;
+    background-color: rgb(100, 0, 150);
     border-radius: 5px;
 }
 
@@ -58,7 +58,7 @@ window {
     margin: 0px 0px;
     border: none;
     border-radius: 5px;
-    background-color: #5500cc;
+    background-color: rgb(100, 0, 150);
 }
 
 #entry {
@@ -72,5 +72,5 @@ window {
     margin: 0px 0px;
     border: none;
     border-radius: 5px;
-    background-color: #5500cc;
+    background-color: rgb(100, 0, 150);
 }
