@@ -59,6 +59,7 @@ tooltip label {
 #custom-weather,
 #custom-media,
 #custom-wf-recorder,
+#custom-notification,
 #cpu,
 #disk,
 #memory,
@@ -76,27 +77,30 @@ tooltip label {
   margin: 3px 0px;
   margin-top: 3px;
   border: 0px;
+  border-radius: 0px;
 }
 
 /* with rounded left */
 /* #tray, */
+#battery,
 #custom-launch_wofi,
-#cpu,
-#network {
-  border-radius: 10px 0px 0px 10px;
+#clock,
+#pulseaudio,
+#cpu {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 /* with roudned right */
+/* #pulseaudio.microphone, */
 #custom-power_btn,
 #workspaces,
-/* #pulseaudio.microphone, */
-#disk {
-  border-radius: 0px 10px 10px 0px;
+#tray,
+#clock,
+#network {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   margin-right: 10px;
-}
-
-#clock {
-  border-radius: 10px;
 }
 
 #battery.warning {
@@ -133,20 +137,24 @@ tooltip label {
   border-right: 0px;
 }
 
-#pulseaudio {
-  /* color: #89b4fa; */
-  border-left: 0px;
-  border-right: 0px;
-}
-
-#pulseaudio.microphone {
-  color: #cba6f7;
-  border-left: 0px;
-  border-right: 0px;
-}
-
 #custom-wf-recorder {
+  color: red;
+}
+
+#custom-weather {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#custom-weather.unavailable {
     color: red;
+}
+
+#tray {
+    padding-left: 0;
+    margin-left: 0;
 }
 
 @keyframes error-animation {
@@ -161,4 +169,3 @@ tooltip label {
     background-color: orange;
   }
 }
-

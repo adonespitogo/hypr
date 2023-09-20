@@ -61,15 +61,31 @@ class PlayerManager:
     def get_players(self) -> List[Player]:
         return self.manager.props.players
 
-    def write_output(self, text, player):
+    def play_pause_icon(self, player):
+        if player and player.props.status == "Playing":
+            return ""
+        else:
+            return ""
+
+    def write_output(self, text, artist, player):
         logger.debug(f"Writing output: {text}")
         logger.debug(f"Playername: {player.props.player_name}")
+        play_pause_icon = self.play_pause_icon(player)
 
-        output = {"text": text,
-                  "class": "custom-" + player.props.player_name,
-                  "alt": player.props.player_name}
+        tooltip_prefix = ""
+        if artist:
+            tooltip_prefix = f"{artist} - "
+
+        if artist and len(text) < 15:
+            text = f"{artist} - {text}"
+
+        output = {"text": f"{play_pause_icon}  {text}", "alt": player.props.player_name, "tooltip": f"{tooltip_prefix}{text}"}
 
         sys.stdout.write(json.dumps(output) + "\n")
+        sys.stdout.flush()
+
+    def write_empty_output(self):
+        sys.stdout.write(json.dumps({"text": "", "alt": "empty"}) + "\n")
         sys.stdout.flush()
 
     def clear_output(self):
@@ -109,26 +125,23 @@ class PlayerManager:
     def on_metadata_changed(self, player, metadata, _=None):
         logger.debug(f"Metadata changed for player {player.props.player_name}")
         player_name = player.props.player_name
-        artist = player.get_artist()
         title = player.get_title()
+        artist = player.get_artist()
 
         track_info = ""
         if player_name == "spotify" and "mpris:trackid" in metadata.keys() and ":ad:" in player.props.metadata["mpris:trackid"]:
             track_info = "Advertisement"
-        elif artist is not None and title is not None:
-            track_info = f"{artist} - {title}"
+        # elif artist is not None and title is not None:
+        #     track_info = f"{artist} - {title}"
         else:
             track_info = title
 
-        if track_info:
-            if player.props.status == "Playing":
-                track_info = "  " + track_info
-            else:
-                track_info = "  " + track_info
         # only print output if no other player is playing
         current_playing = self.get_first_playing_player()
-        if current_playing is None or current_playing.props.player_name == player.props.player_name:
-            self.write_output(track_info, player)
+        if not track_info.strip():
+            self.write_empty_output()
+        elif current_playing is None or current_playing.props.player_name == player.props.player_name:
+            self.write_output(track_info, artist, player)
         else:
             logger.debug(f"Other player {current_playing.props.player_name} is playing, skipping")
 

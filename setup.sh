@@ -1,44 +1,5 @@
 #!/bin/bash
 
-# The follwoing will attempt to install all needed packages to run Hyprland
-# This is a quick and dirty script there are no error checking
-# This script is meant to run on a clean fresh Arch install
-#
-# Below is a list of the packages that would be installed
-#
-# hyprland-git: This is the Hyprland compositor
-# waybar-hyprland: This is a fork of waybar with Hyprland workspace support
-# swww: This is used to set a desktop background image
-# swaylock-effects: This allows for the locking of the desktop its a fork that adds some editional visual effects
-# wofi: This is an application launcher menu
-# wlogout: This is a logout menu that allows for shutdown, reboot and sleep
-# mako: This is a graphical notification daemon
-# xdg-desktop-portal-hyprland-git: xdg-desktop-portal backend for hyprland
-# swappy: This is a screenshot editor tool
-# grim: This is a screenshot tool it grabs images from a Wayland compositor
-# slurp: This helps with screenshots, it selects a region in a Wayland compositor
-# thunar: This is a graphical file manager
-# polkit-gnome: needed to get superuser access on some graphical appliaction
-# python-requests: needed for the weather module script to execute
-# pamixer: This helps with audio settings such as volume
-# pavucontrol: GUI for managing audio and audio devices
-# brightnessctl: used to control monitor and keyboard bright level
-# bluez: the bluetooth service
-# bluez-utils: command line utilities to interact with bluettoth devices
-# blueman: Graphical bluetooth manager
-# network-manager-applet: Applet for managing network connection
-# gvfs: adds missing functionality to thunar such as automount usb drives
-# thunar-archive-plugin: Provides a front ent for thunar to work with compressed files
-# file-roller: Backend set of tools for working with compressed files
-# btop: Resource monitor that shows usage and stats for processor, memory, disks, network and processes.
-# pacman-contrib: adds additional tools for pacman. needed for showing system updates in the waybar
-# starship: allows to customize the shell prompt
-# ttf-jetbrains-mono-nerd: Some nerd fonts for icons and overall look
-# noto-fonts-emoji: fonts needed by the weather script in the top bar
-# lxappearance: used to set GTK theme
-# xfce4-settings: set of tools for xfce, needed to set GTK theme
-# sddm: a display manager for graphical login
-
 # set some colors
 CNT="[\e[1;36mNOTE\e[0m]"
 COK="[\e[1;32mOK\e[0m]"
@@ -60,8 +21,6 @@ Please note that support for Nvidia GPUs is limited and may require
 more work which is beyond the scope of this script.
 \n"
 
-sleep 3
-
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to continue with the install (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "$COK - Starting install script.."
@@ -74,8 +33,6 @@ fi
 echo -e "\n
 $CNT - This script will run some commands that require sudo. You will be prompted to enter your password.
 If you are worried about entering your password then you may want to review the content of the script."
-
-sleep 3
 
 #### Check for yay ####
 ISYAY=/sbin/yay
@@ -103,7 +60,6 @@ if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
     echo -e "$CNT - The following file has been created $LOC."
     echo -e "[connection]\nwifi.powersave = 2" | sudo tee -a $LOC &>> $INSTLOG
     echo -e "\n"
-    echo -e "$CNT - Restarting NetworkManager service..."
     sleep 1
     sudo systemctl restart NetworkManager &>> $INSTLOG
     sleep 3
@@ -122,7 +78,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     PACKAGES="$PACKAGES less wl-clipboard xorg-xhost wf-recorder zenity jq xdg-utils ntfs-3g"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
     PACKAGES="$PACKAGES hyprland-git alacritty waybar swww swaylock-effects wofi wlogout swayidle"
-    PACKAGES="$PACKAGES mako xdg-desktop-portal-hyprland swappy grim slurp thunar kdeconnect breeze-icons"
+    PACKAGES="$PACKAGES swaync-git xdg-desktop-portal-hyprland swappy grim slurp thunar kdeconnect breeze-icons"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin tumbler"
     PACKAGES="$PACKAGES file-roller btop pacman-contrib lxappearance xfce4-settings sddm thunar-volman"
     PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia"
@@ -135,9 +91,9 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
         PACKAGES="$PACKAGES $APPS"
     fi
 
-    echo -e "\n$CNT - Installing main components, this may take a while..."
-
+    echo -e "\n$CNT - Installing main packages, this may take a while..."
     yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
+
 
     echo -e "$CNT - Set default applications..."
     xdg-mime default google-chrome.desktop x-scheme-handler/https x-scheme-handler/http
@@ -163,11 +119,38 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
 fi
 
+
+### These are personal applications I use, feel free to remove or change ###
+PACKAGES="docker docker-compose docker-buildx virtualbox virtualbox-host-dkms linux-headers virtualbox-guest-iso virtualbox-ext-oracle tlp"
+
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like install these packages? '"${PACKAGES}"' (y,n) ' INST
+if [[ $INST == "Y" || $INST == "y" ]]; then
+    echo -e "\n$CNT - Installing additional packages, this may take a while..."
+    yay -Syu --noconfirm &>> $INSTLOG
+    yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
+
+    echo -e "\n$CNT - Adding user to groups..."
+    sudo usermod -aG docker,vboxusers,storage,disk,input $USER
+
+    echo -e "\n$CNT - Enabling docker and vbox services..."
+    sudo systemctl enable docker.service
+    # sudo systemctl enable systemd-modules-load.service
+
+    # enable tlp
+    echo -e "\n$CNT - Configuring tlp service..."
+    sudo systemctl enable tlp.service
+    sudo systemctl mask systemd-rfkill.service
+    sudo systemctl mask systemd-rfkill.socket
+    echo -e "TLP_DEFAULT_MODE=BAT" | sudo tee -a /etc/tlp.conf
+    echo -e "STOP_CHARGE_THRESH_BAT0=80" | sudo tee -a /etc/tlp.conf
+    echo -e "RESTORE_THRESHOLDS_ON_BAT=1" | sudo tee -a /etc/tlp.conf
+fi
+
 ### Copy Config Files ###
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
-    for DIR in alacritty hypr mako swappy swaylock waybar wlogout wofi
+    for DIR in alacritty hypr swappy swaylock waybar wlogout wofi swaync
     do
         DIRPATH=~/.config/$DIR
         if [ -d "$DIRPATH" ]; then
@@ -209,9 +192,9 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
 
     # Set deskstop wallpaper
     # Cycle wallpapers in ~/.config/hypr/wallpapers every 5 mins
-    mkdir -p ~/.config/systemd
-    cp -r systemd/* ~/.config/systemd
     echo -e "$CNT - Configuring desktop wallpapers..."
+    mkdir -p ~/.config/systemd/user
+    cp -r systemd/user/. ~/.config/systemd/user
     systemctl --user daemon-reload
     systemctl --user enable bgaction.timer
     systemctl --user start bgaction.timer
@@ -268,10 +251,16 @@ fi
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would like to install grub theme? (y,n) ' GRUB
 if [[ $GRUB == "Y" || $GRUB == "y" ]]; then
     workdir=$(pwd)
-    rm -rf grub2-themes
+    extract_dir="/tmp/grub2-cybre"
 
-    git clone https://github.com/vinceliuice/grub2-themes.git && \
-        cd grub2-themes && ./install.sh
+    rm -rf $extract_dir
+    mkdir -p $extract_dir
+
+    echo -e "$CNT - Installing grub theme..."
+    tar xvf ./extras/Grub2-theme_CyberRe-1.0.0.tar.gz --directory "${extract_dir}" &>> $INSTLOG && \
+        cd "${extract_dir}/CyberRe 1.0.0" && ./install.sh && \
+        echo -e "GRUB_GFXMODE=1920x1080x32" | sudo tee -a /etc/default/grub &>> $INSTLOG && \
+        sudo grub-mkconfig -o /boot/grub/grub.cfg &>> $INSTLOG
 
     cd $workdir
 fi

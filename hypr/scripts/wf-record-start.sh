@@ -1,11 +1,13 @@
 #!/bin/sh
 
+icon_path="$HOME/.config/hypr/icons/picture.png"
+
 if [ -z $(pgrep wf-recorder) ];
 then
     recordings="$HOME/Videos/Recordings"
     mkdir -p "${recordings}"
 
-    filename=$(zenity --entry --text "Record screen file name (no extension):")
+    filename=$(zenity --entry --text "Screen record filename (no extension):")
     if [ -z "${filename}" ]; then exit; fi
 
     filename="${recordings}/${filename}_$(date "+%s").mp4"
@@ -14,7 +16,10 @@ then
     if [ -z $selection_area ];then exit;fi
 
     wf-recorder -g "${selection_area}" --audio --file="${filename}" >/dev/null 2>&1 &
-    notify-send "Recording started"
+
+    echo "$filename" > "/tmp/.recording"
+
+    notify-send -u low -i "${icon_path}" "Screen Record" "Recording has started"
     # Restart waybar
     pkill -RTMIN+8 waybar
 else
