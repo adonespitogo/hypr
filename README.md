@@ -13,7 +13,7 @@ A collection of dot config files for hyprland with a simple install script for a
 - Volume, mic and brightness buttons key binding
 - Print Screen button key binding to screenshot
 - Screen recording with MOD+SHIFT+PrtSc key binding
-- CPU, temperature, memory and disk usage percentage
+- CPU, temperature, memory, disk and network stats
 - Battery/Power status
 - Weather status
 - Background change every 5 mins
