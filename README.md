@@ -49,7 +49,7 @@ ______________________________________________________________________
 
 You can add wallpapers in `~/.config/wallpapers`. These images will cycle randomly as wallpaper every 5 mins.
 
-You can change the background randomly with `MOD+SHIFT+b`.
+You can trigger random wallpaper change with `MOD+SHIFT+b`.
 ______________________________________________________________________
 
 ## Credits
