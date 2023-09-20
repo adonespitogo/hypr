@@ -4,7 +4,8 @@
 
 @define-color cc-bg rgba(0, 0, 0, 1.0);
 
-@define-color noti-border-color rgba(150, 0, 200, 0.15);
+/*@define-color noti-border-color rgba(150, 0, 200, 0.15); */
+@define-color noti-border-color rgb(30, 30, 46);
 @define-color noti-bg rgb(30, 30, 46);
 @define-color noti-bg-darker rgb(18, 18, 28);
 @define-color noti-bg-hover rgb(100, 0, 150);
