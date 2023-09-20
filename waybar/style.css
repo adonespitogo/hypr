@@ -85,7 +85,7 @@ tooltip label {
 #battery,
 #custom-launch_wofi,
 #clock,
-#pulseaudio,
+#pulseaudio:not(.microphone),
 #cpu {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
