@@ -116,7 +116,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
 
     # Clean out other portals
     echo -e "$CNT - Cleaning out conflicting xdg portals..."
-    yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk &>> $INSTLOG
+    yay -R --noconfirm xdg-desktop-portal-gnome xdg-desktop-portal-gtk xdg-desktop-portal-dde &>> $INSTLOG
 fi
 
 
