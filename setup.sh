@@ -234,7 +234,7 @@ if [[ $GRUB == "Y" || $GRUB == "y" ]]; then
     mkdir -p $extract_dir
 
     tar xvf ./extras/Grub2-theme_CyberRe-1.0.0.tar.gz --directory "${extract_dir}" && \
-        cd "${extract_dir}/CyberRe\ 1.0.0" && ./install.sh &>> $INSTLOG
+        cd "${extract_dir}/CyberRe 1.0.0" && ./install.sh &>> $INSTLOG
 
     cd $workdir
 fi
