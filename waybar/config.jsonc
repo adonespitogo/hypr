@@ -113,7 +113,6 @@
     "clock": {
         "format": "{:%a %b %d %I:%M %p}",
         "tooltip": true,
-        // "tooltip-format": "{:  %A, %B %e %Y}",
         "tooltip-format": "<big><tt>{calendar}</tt></big>"
     },
     "backlight": {
@@ -142,7 +141,8 @@
         "format": "{icon} {capacity}%",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
+        /*"format-alt": "{time} {icon}", */
+        "format-alt": "{icon} {capacity}%",
         "format-icons": [
             "󰂎",
             "󰁺",
