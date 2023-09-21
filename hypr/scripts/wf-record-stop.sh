@@ -16,12 +16,13 @@ then
 
     if [ -f "${tmp_file}" ]; then
         tmp_file="$(cat $tmp_file)"
-        filename="Record_$(date "+%s")"
-        filename="${recordings}/${filename}.mp4"
+        filename="Record_$(date "+%s").mp4"
+        filepath="${recordings}/${filename}"
+        saved_to="~/Videos/Recordings/${filename}"
 
-        mv "${tmp_file}" "${filename}"
+        mv "${tmp_file}" "${filepath}"
 
-        action=$($notify_cmd_shot "Screen Record" "Saved to ${filename}" --action "Open containing folder")
+        action=$($notify_cmd_shot "Screen Record" "Saved to ${saved_to}" --action " Open containing folder")
 
         if [[ "${action}" == "0" ]]; then
             thunar "${filename}"

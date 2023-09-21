@@ -44,7 +44,7 @@ if [ ! -e "$tmp" ]; then
 fi
 
 mv $tmp $filename
-action=$(${notify_cmd_shot} "Screenshot" "Saved to ~/Pictures/Screenshots/${file}" --action "Open containing folder")
+action=$(${notify_cmd_shot} "Screenshot" "Saved to ~/Pictures/Screenshots/${file}" --action " Open containing folder")
 
 echo "action: ${action}"
 
