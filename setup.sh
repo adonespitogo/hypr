@@ -86,10 +86,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     ### These are personal applications I use, feel free to remove or change ###
     APPS="google-chrome gparted slack-desktop-wayland spotify"
 
-    read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like include these packages? '"${APPS}"' (y,n) ' INST
-    if [[ $INST == "Y" || $INST == "y" ]]; then
-        PACKAGES="$PACKAGES $APPS"
-    fi
+    PACKAGES="$PACKAGES $APPS"
 
     echo -e "\n$CNT - Installing main packages, this may take a while..."
     yay -S $PACKAGES --noconfirm --needed --overwrite &>> $INSTLOG
