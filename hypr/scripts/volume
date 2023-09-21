@@ -11,7 +11,13 @@ get_volume() {
 # Get volume icons
 get_vol_icon() {
     is_mute=$1
-    if [ "${is_mute}" == "true" ]; then echo "$iDIR/volume-muted.png"; exit; fi
+    if [ "${is_mute}" == "mute" ]; then
+        echo "$iDIR/volume-muted.png"; exit
+    fi
+
+    if [ "${is_mute}" == "unmute" ]; then
+        echo "$iDIR/volume-high.png"; exit
+    fi
 
     current=$(get_volume)
     if [[ "$current" -eq "0" ]]; then
@@ -65,11 +71,11 @@ dec_volume() {
 # Toggle Mute
 toggle_vol_mute() {
     if [ "$(pamixer --get-mute)" == "false" ]; then
-        pamixer -m && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_vol_icon 'true')" "Volume" "Switched OFF"
+        pamixer -m && notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_vol_icon 'mute')" "Volume" "Switched OFF"
     elif [ "$(pamixer --get-mute)" == "true" ]; then
         pamixer -u && \
-            mpv ~/.config/hypr/sounds/cork.mp3 && \
-            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_vol_icon)" "Volume" "Switched ON"
+            mpv ~/.config/hypr/sounds/cork.mp3 & \
+            notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_vol_icon 'unmute')" "Volume" "Switched ON"
     fi
 }
 
