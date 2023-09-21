@@ -59,6 +59,13 @@
         "max-length": 10,
         "on-click": "alacritty --title btop -e sh -c 'btop'"
     },
+    "temperature": {
+        "thermal-zone": 1,
+        "format": " {temperatureC}°C",
+        "critical-threshold": 70,
+        "format-critical": " {temperatureC}°C",
+        "on-click": "alacritty --title btop -e sh -c 'btop'"
+    },
     "disk": {
         "interval": 30,
         "format": "󰋊 {percentage_used}%",
@@ -205,13 +212,6 @@
         "on-scroll-up": "~/.config/hypr/scripts/volume --mic-inc",
         "on-scroll-down": "~/.config/hypr/scripts/volume --mic-dec",
         "scroll-step": 5
-    },
-    "temperature": {
-        "thermal-zone": 1,
-        "format": " {temperatureC}°C",
-        "critical-threshold": 70,
-        "format-critical": " {temperatureC}°C",
-        "on-click": "alacritty -o \"window.startup_mode=Fullscreen\" sh -c 'btop'"
     },
     "custom/lock_screen": {
         "format": "",
