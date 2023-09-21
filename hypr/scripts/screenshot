@@ -11,24 +11,26 @@ filename="${dir}/${file}"
 capture_area=$1
 grim_output="/tmp/grim_$(date "+%s").png"
 
-notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:shot-notify -u low -i ${iDIR}/picture.png"
+notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:screeenshot -u low -i ${iDIR}/picture.png"
+
+proc_notif(){
+    mpv $shutter_sound &
+    ${notify_cmd_shot} -t 1500 "Screenshot" "Processing screenshot."
+}
 
 # Clean up tmp file
 rm -f $tmp
 mkdir -p $dir
 
 if [ -z "$capture_area" ]; then
-    mpv $shutter_sound
-    ${notify_cmd_shot} -t 1500 "Processing" "Processing screenshot."
-
+    proc_notif &
     grim $grim_output
     swappy -f $grim_output
 else
     selection_area=$(slurp)
     if [ ! -z "${selection_area}" ]; then
-        mpv $shutter_sound
-        ${notify_cmd_shot} -t 1500 "Processing" "Processing screenshot."
-
+        mpv $shutter_sound &
+        proc_notif &
         grim -g "${selection_area}" $grim_output
         swappy -f $grim_output
     else
@@ -42,7 +44,9 @@ if [ ! -e "$tmp" ]; then
 fi
 
 mv $tmp $filename
-action=$(${notify_cmd_shot} "Screenshot" "Saved to ~/Pictures/Screenshots/${file}" --action "Locate")
+action=$(${notify_cmd_shot} "Screenshot" "Saved to ~/Pictures/Screenshots/${file}" --action "Open containing folder")
+
+echo "action: ${action}"
 
 if [[ "${action}" == "0" ]]; then
     thunar "${filename}"

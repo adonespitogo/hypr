@@ -1,6 +1,8 @@
 #!/bin/sh
 
 icon_path="$HOME/.config/hypr/icons/video.png"
+notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:screeenrecord -u low -i ${icon_path}"
+
 recordings="$HOME/Videos/Recordings"
 tmp_dir="${recordings}/.tmp"
 tmp_file="${tmp_dir}/.recording"
@@ -13,8 +15,8 @@ then
     echo "$filename" > "${tmp_file}"
 
     wf-recorder --audio --file="${filename}" & disown && \
-        notify-send -u low -i "${icon_path}" "Screen Record" "Recording has started." && \
+        $notify_cmd_shot "Screen Record" "Recording has started." && \
         pkill -RTMIN+8 waybar
 else
-    notify-send -u low -i $icon_path "Screen Record" "Recording is already in progress."
+    $notify_cmd_shot "Screen Record" "Recording is already in progress."
 fi

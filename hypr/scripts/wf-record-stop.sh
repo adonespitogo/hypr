@@ -1,9 +1,12 @@
 #!/bin/sh
 
 icon_path="$HOME/.config/hypr/icons/video.png"
+notify_cmd_shot="notify-send -h string:x-canonical-private-synchronous:screeenrecord -u low -i ${icon_path}"
+
 recordings="$HOME/Videos/Recordings"
 tmp_dir="${recordings}/.tmp"
 tmp_file="${tmp_dir}/.recording"
+
 
 if [ ! -z $(pgrep wf-recorder) ];
 then
@@ -18,12 +21,12 @@ then
 
         mv "${tmp_file}" "${filename}"
 
-        action=$(notify-send -u low -i "${icon_path}" "Screen Record" "Saved to ${filename}" --action "Locate")
+        action=$($notify_cmd_shot "Screen Record" "Saved to ${filename}" --action "Open containing folder")
 
         if [[ "${action}" == "0" ]]; then
             thunar "${filename}"
         fi
     fi
 else
-    notify-send -i $icon_path -u low "Screen Record" "Not recording!"
+    ${notify_cmd_shot} "Screen Record" "Not recording!"
 fi
