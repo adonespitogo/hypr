@@ -11,10 +11,10 @@ if [ -z $(pgrep wf-recorder) ]
 then
     mkdir -p "${tmp_dir}"
 
-    filename="${tmp_dir}/$(date "+%s").mp4"
-    echo "$filename" > "${tmp_file}"
+    filepath="${tmp_dir}/$(date "+%s").mp4"
+    echo "$filepath" > "${tmp_file}"
 
-    wf-recorder --audio --file="${filename}" & disown && \
+    wf-recorder --audio --file="${filepath}" & disown && \
         $notify_cmd_shot "Screen Record" "Recording has started." && \
         pkill -RTMIN+8 waybar
 else

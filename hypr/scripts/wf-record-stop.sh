@@ -25,7 +25,7 @@ then
         action=$($notify_cmd_shot "Screen Record" "Saved to ${saved_to}" --action " Open containing folder")
 
         if [[ "${action}" == "0" ]]; then
-            thunar "${filename}"
+            thunar "${filepath}"
         fi
     fi
 else
