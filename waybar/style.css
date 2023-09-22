@@ -27,30 +27,37 @@ tooltip label {
 
 #workspaces button {
   padding: 2px;
-  color: #313244;
+  color: #558;
+  /* color: #313244; */
   margin-right: 5px;
+  border-radius: 10px;
 }
 
 #workspaces button.active {
-  color: #a6adc8;
+  background: #cdd6f4;
+  color: #000;
+}
+
+#workspaces button.active:hover {
+  background: #cdd6f4;
+  color: #000;
 }
 
 #workspaces button.focused {
-  color: #a6adc8;
+  color: #cdd6f4;
   background: #eba0ac;
-  border-radius: 10px;
 }
 
 #workspaces button.urgent {
   color: #11111b;
   background: #a6e3a1;
-  border-radius: 10px;
 }
 
 #workspaces button:hover {
-  background: #11111b;
+  /* background: #cdd6f4; */
+  /* color: #000; */
+  background: #1e1e2e;
   color: #cdd6f4;
-  border-radius: 10px;
 }
 
 #custom-launch_wofi,
