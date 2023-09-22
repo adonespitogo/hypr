@@ -204,18 +204,6 @@ if [[ $HIDPI == "Y" || $HIDPI == "y" ]]; then
     sudo cp ./sddm/sddm.conf.d/hidpi.conf /etc/sddm.conf.d/
 fi
 
-### Install the starship shell ###
-read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to activate the starship shell? (y,n) ' STAR
-if [[ $STAR == "Y" || $STAR == "y" ]]; then
-    # install the starship shell
-    echo -e "$CNT - Hansen Crusher, Engage!"
-    echo -e "$CNT - Updating .bashrc..."
-    echo -e '\neval "$(starship init bash)"' >> ~/.bashrc
-    echo -e '\neval "$(starship init zsh)"' >> ~/.zshrc
-    echo -e "$CNT - copying starship config file to ~/.confg ..."
-    cp extras/starship.toml ~/.config/
-fi
-
 ### Install software for Asus ROG laptops ###
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - For ASUS ROG Laptops - Would you like to install Asus ROG software support? (y,n) ' ROG
 if [[ $ROG == "Y" || $ROG == "y" ]]; then
@@ -262,11 +250,67 @@ if [[ $GRUB == "Y" || $GRUB == "y" ]]; then
     cd $workdir
 fi
 
+### Install zsh shell
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to install ZSH shell? (y,n) ' ZSH
+if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
+    echo -e "$CNT - Installing zsh..."
+    yay -S curl bash curl git zsh zsh-completions --noconfirm --needed --overwrite &>> $INSTLOG
+
+    echo -e "$CNT - Installing Oh My ZSH..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
+
+    AUTOSUGST_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    SNTXH_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+    if [ -f ~/.zshrc ];then
+        echo -e "$CNT - Creating back up of ~/.zshrc ..."
+        cp ~/.zshrc ~/.zshrc-backup-$(date +"%Y%m%d%H%M%S")
+    fi
+
+    if [ ! -d $AUTOSUGST_DIR ];then
+        echo -e "$CNT - Installing zsh-autosuggestions..."
+        git clone https://github.com/zsh-users/zsh-autosuggestions $AUTOSUGST_DIR &
+    fi
+
+    if [ ! -d $SNTXH_DIR ];then
+        echo -e "$CNT - Installing zsh-syntax-highlighting..."
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $SNTXH_DIR &
+    fi
+
+    wait
+
+    cp zsh/.zshrc ~/.zshrc
+    cp starship.toml ~/.config/
+fi
+
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to install tmux? (y,n) ' TMUX
+if [[ $TMUX == "Y" || $TMUX == "y" ]]; then
+    workdir=$(pwd)
+    cd tmux
+
+    echo -e "$CNT - Installing tmux..."
+    yay -S make cmake tmux --noconfirm --needed --overwrite &>> $INSTLOG
+
+    rm -rf ~/.config/tmux
+    mkdir -p ~/.config/tmux
+    cp -r ./* ~/.config/tmux
+
+    mkdir -p ~/.tmux ~/.config/tmux/plugins
+    ln -sf ~/.config/tmux/tmux.conf ~/.tmux.conf
+    ln -sf ~/.config/tmux/plugins ~/.tmux/plugins
+
+    if [ ! -d ~/.tmux/plugins/tpm ];then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
+
+    cd $workdir
+fi
+
 ### Script is done ###
 echo -e "$CNT - Script had completed!"
-read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to start Hyprland now? (y,n) ' HYP
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to reboot now? (y,n) ' HYP
 if [[ $HYP == "Y" || $HYP == "y" ]]; then
-    exec sudo systemctl start sddm &>> $INSTLOG
+    sudo reboot
 else
     exit
 fi
