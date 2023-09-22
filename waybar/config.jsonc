@@ -118,7 +118,8 @@
         "spacing": 6
     },
     "clock": {
-        "format": "{:%a %b %d %I:%M %p}",
+        // "format": "{:%a %b %d %I:%M %p}",
+        "format": "{:󰸗 %a %b %d  %I:%M %p}",
         "tooltip": true,
         "tooltip-format": "<big><tt>{calendar}</tt></big>"
     },
