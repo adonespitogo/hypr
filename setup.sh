@@ -72,8 +72,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     echo -e "$COK - Updating yay database..."
     yay -Syu --noconfirm &>> $INSTLOG
 
-    PACKAGES="ttf-dejavu" # need to fix fonts
-    PACKAGES="$PACKAGES ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome"
+    PACKAGES="ttf-dejavu ttf-jetbrains-mono-nerd noto-fonts-emoji otf-font-awesome adobe-source-han-sans-otc-fonts"
     PACKAGES="$PACKAGES git tk polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
     PACKAGES="$PACKAGES less wl-clipboard xorg-xhost wf-recorder zenity jq xdg-utils ntfs-3g"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
