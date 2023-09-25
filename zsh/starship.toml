@@ -32,12 +32,12 @@ symbol = " "
 symbol = " "
 
 [git_status]
-ahead = " ⇡${count}"
-diverged = " ⇡${ahead_count}⇣${behind_count}"
-behind = " ⇣${count}"
-modified = " !${count}"
-untracked = " ?${count}"
-staged = " +${count}"
+ahead = "⇡${count}"
+diverged = "⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+modified = "!${count}"
+untracked = "?${count}"
+staged = "+${count}"
 
 [golang]
 symbol = " "
