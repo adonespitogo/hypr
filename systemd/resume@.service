@@ -1,0 +1,11 @@
+[Unit]
+Description=Reinitialize alsa service on resume
+After=suspend.target
+
+[Service]
+User=%i
+Type=simple
+ExecStart=/usr/bin/alsactl init
+
+[Install]
+WantedBy=suspend.target

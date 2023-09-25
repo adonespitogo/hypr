@@ -65,6 +65,16 @@ if [[ $WIFI == "Y" || $WIFI == "y" ]]; then
     sleep 3
 fi
 
+### Restart alsa on resume to fix no sound after standby ###
+read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to restart alsa after suspend? (y,n) ' ALSA
+if [[ $ALSA == "Y" || $ALSA == "y" ]]; then
+    LOC="/etc/systemd/system/resume@.service"
+    sudo cp ./systemd/resume@.service $LOC
+    echo -e "$CNT - The following file has been created $LOC."
+    sleep 1
+    sudo systemctl enable "resume@${USER}.service"
+fi
+
 ### Install all of the above pacakges ####
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to install the packages? (y,n) ' INST
 if [[ $INST == "Y" || $INST == "y" ]]; then
