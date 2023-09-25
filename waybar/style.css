@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-  background: rgba(21, 18, 27, 0);
+  background: none;
   color: #cdd6f4;
 }
 
@@ -54,8 +54,6 @@ tooltip label {
 }
 
 #workspaces button:hover {
-  /* background: #cdd6f4; */
-  /* color: #000; */
   background: #1e1e2e;
   color: #cdd6f4;
 }
@@ -92,6 +90,7 @@ tooltip label {
 #battery,
 #custom-launch_wofi,
 #clock,
+#custom-media,
 #pulseaudio:not(.microphone),
 #cpu {
   border-top-left-radius: 10px;
@@ -104,10 +103,18 @@ tooltip label {
 #workspaces,
 #tray,
 #clock,
+#custom-media,
 #network {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  margin-right: 10px;
+  margin-right: 5px;
+}
+
+/* Start overrides */
+
+#workspaces {
+  padding-right: 0px;
+  padding-left: 3px;
 }
 
 #battery.warning {
@@ -127,20 +134,8 @@ tooltip label {
   animation: none;
 }
 
-#workspaces {
-  padding-right: 0px;
-  padding-left: 3px;
-}
-
-#custom-media {
-  border-radius: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
 #custom-launch_wofi {
   color: #89b4fa;
-  margin-left: 10px;
   border-right: 0px;
 }
 
@@ -156,7 +151,12 @@ tooltip label {
 }
 
 #custom-weather.unavailable {
-    color: red;
+  color: red;
+}
+
+#custom-launch_wofi {
+    margin-left: 5px;
+    margin-right: 0px;
 }
 
 @keyframes error-animation {
