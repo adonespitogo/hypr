@@ -3,5 +3,5 @@
 swayidle -w \
     timeout 300 'swaylock -f' \
     timeout 600 'hyprctl --batch "dpms off" ; systemctl suspend' \
-    resume 'hyprctl --batch "dpms on"' \
+    resume 'hyprctl --batch "dpms on" ; pamixer --set-volume 40' \
     before-sleep 'swaylock -f'
