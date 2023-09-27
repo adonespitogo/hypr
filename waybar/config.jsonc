@@ -172,8 +172,8 @@
     "network": {
         "interval": 2,
         "format": "{ifname}",
-        "format-wifi": " {bandwidthDownBytes}",
-        "format-ethernet": " {bandwidthDownBytes}",
+        "format-wifi": " {bandwidthTotalBytes}",
+        "format-ethernet": " {bandwidthTotalBytes}",
         "format-disconnected": "󰌙 0.0B/s", //An empty format will hide the module.
         "tooltip-format": "  {ifname} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
         "tooltip-format-wifi": " {essid} ({ipaddr}) ▾{bandwidthDownBytes} ▴{bandwidthUpBytes}",
