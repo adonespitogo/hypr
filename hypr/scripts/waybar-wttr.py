@@ -133,7 +133,16 @@ try:
             data['tooltip'] += f"{format_hour(hour['time'])} {WEATHER_CODES[hour['weatherCode']]} {format_temp(hour['FeelsLikeC'])} {hour['weatherDesc'][0]['value']}, {format_chances(hour)}\n"
 
 
+    json_object = json.dumps(data, indent=4)
+    with open("/tmp/wttr-cache.json", "w") as outfile:
+        outfile.write(json_object)
+
     print(json.dumps(data))
 
 except:
-    print(json.dumps({'text': '!☁️', 'class': 'unavailable', 'tooltip': 'Weather unavailable'}))
+    try:
+        f = open("/tmp/wttr-cache.json", "r")
+        print(f.read())
+
+    except:
+        print(json.dumps({'text': '!☁️', 'class': 'unavailable', 'tooltip': 'Weather unavailable'}))
