@@ -3,5 +3,5 @@
 swayidle -w \
     timeout 300 'swaylock -f' \
     timeout 600 'hyprctl dispatch dpms off ; if [ "$(acpi -a | grep Adapter | cut -d: -f2 | xargs)" = "off-line" ]; then systemctl suspend; fi' \
-    resume 'hyprctl dispatch dpms on ; pamixer --set-volume 40' \
+    resume 'hyprctl dispatch dpms on ; sleep 1; pamixer -u ; pamixer --set-volume 40' \
     before-sleep 'swaylock -f'
