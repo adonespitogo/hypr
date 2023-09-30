@@ -289,7 +289,7 @@ if [[ $ZSH == "Y" || $ZSH == "y" ]]; then
     wait
 
     cp zsh/.zshrc ~/.zshrc
-    cp starship.toml ~/.config/
+    cp zsh/starship.toml ~/.config/
 fi
 
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to install tmux? (y,n) ' TMUX
