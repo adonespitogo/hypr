@@ -2,13 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+DISABLE_AUTO_UPDATE="true"
 export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -100,10 +95,24 @@ source $ZSH/oh-my-zsh.sh
 
 export GTK_THEME=Adwaita:dark
 export EDITOR="nvim"
+export VISUAL="nvim"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.rvm/bin:$PATH"
 export PATH="$HOME/.luarocks/bin:$PATH"
 
+alias vim=nvim
+alias vi=nvim
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-[[ -s "$HOME/.gvm/scripts/gvm" ]] &&  source "$HOME/.gvm/scripts/gvm"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Laravel sail alias
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+
+export OPENAI_API_KEY=""
+alias gpt="chatgpt-cli --model gpt-4 -ml"
+
+eval "$(starship init zsh)"
