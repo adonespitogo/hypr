@@ -90,7 +90,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     PACKAGES="$PACKAGES swaync-git xdg-desktop-portal-hyprland swappy grim slurp thunar kdeconnect breeze-icons"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin tumbler acpi"
     PACKAGES="$PACKAGES file-roller btop pacman-contrib lxappearance xfce4-settings sddm thunar-volman"
-    PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia"
+    PACKAGES="$PACKAGES gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia nwg-look"
 
     ### These are personal applications I use, feel free to remove or change ###
     APPS="google-chrome gparted slack-desktop-wayland spotify"
@@ -156,7 +156,7 @@ fi
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
-    for DIR in alacritty hypr swappy swaylock waybar wlogout wofi swaync
+    for DIR in alacritty hypr swappy swaylock waybar wlogout wofi swaync gtk-3.0 Kvantum
     do
         DIRPATH=~/.config/$DIR
         if [ -d "$DIRPATH" ]; then
@@ -171,7 +171,6 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     # Set some files as exacutable
     echo -e "$CNT - Setting some file as executable."
     chmod +x ~/.config/hypr/scripts/*
-    chmod +x ~/.config/mako/scripts/*
 
     # Copy the SDDM theme
     echo -e "$CNT - Setting up the login screen."
