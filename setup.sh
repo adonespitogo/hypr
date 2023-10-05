@@ -156,7 +156,7 @@ fi
 read -n1 -rep $'[\e[1;33mACTION\e[0m] - Would you like to copy config files? (y,n) ' CFG
 if [[ $CFG == "Y" || $CFG == "y" ]]; then
     echo -e "$CNT - Copying config files..."
-    for DIR in alacritty hypr swappy swaylock waybar wlogout wofi swaync gtk-3.0 Kvantum
+    for DIR in alacritty hypr swappy swaylock waybar wlogout wofi swaync gtk-3.0 Kvantum qt5ct
     do
         DIRPATH=~/.config/$DIR
         if [ -d "$DIRPATH" ]; then
