@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Check if media is playing
+if [ "$(playerctl status)" = "Playing" ]; then
+    echo "Media is playing."
+else
+    # Turn off monitors
+    hyprctl --batch "dpms off"
+
+    # Suspend if not plugged in to power
+    if [ "$(acpi -a | grep Adapter | cut -d: -f2 | xargs)" = "off-line" ]; then systemctl suspend; fi
+fi
