@@ -204,6 +204,9 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     systemctl --user enable bgaction.timer
     systemctl --user start bgaction.timer
     systemctl --user status bgaction.timer
+
+    # Copy electron configs
+    cp ./extras/electron* ~/.config
 fi
 
 ### Enable hiDPI for hi-res screens ###
