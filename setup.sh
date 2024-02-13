@@ -86,7 +86,7 @@ if [[ $INST == "Y" || $INST == "y" ]]; then
     PACKAGES="$PACKAGES git tk polkit-gnome python-requests pamixer pavucontrol brightnessctl mpv xorg-xev"
     PACKAGES="$PACKAGES less wl-clipboard xorg-xhost wf-recorder zenity jq xdg-utils ntfs-3g"
     PACKAGES="$PACKAGES pipewire wireplumber pipewire-pulse pipewire-audio pipewire-alsa"
-    PACKAGES="$PACKAGES hyprland-git alacritty waybar swww swaylock-effects wofi wlogout swayidle"
+    PACKAGES="$PACKAGES hyprland alacritty waybar swww swaylock-effects wofi wlogout swayidle"
     PACKAGES="$PACKAGES swaync-git xdg-desktop-portal-hyprland swappy grim slurp thunar kdeconnect breeze-icons shotwell"
     PACKAGES="$PACKAGES bluez bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin tumbler acpi"
     PACKAGES="$PACKAGES file-roller btop pacman-contrib lxappearance xfce4-settings sddm thunar-volman"
